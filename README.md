@@ -22,6 +22,7 @@ Umbraco 9 based Magic Umbraco Toolbox.
      "ConnectionStrings": {
     
   }
+
 5. open shell 
 6. cd ./Sss.Umb9.Mutobo.Web
 7. dot net run
