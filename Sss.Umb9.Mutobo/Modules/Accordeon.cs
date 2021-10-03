@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Sss.Umb9.Mutobo.Constants;
 using Sss.Umb9.Mutobo.Interfaces;
@@ -26,7 +27,7 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public override IHtmlContent RenderModule(HtmlHelper helper)
+        public override IHtmlContent RenderModule(IHtmlHelper helper)
         {
             var bld = new StringBuilder();
             bld.Append(helper.PartialAsync("~/Views/Modules/Accordeon.cshtml", this, helper.ViewData));

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Sss.Umb9.Mutobo.Interfaces;
 using System;
@@ -21,7 +22,7 @@ namespace Sss.Umb9.Mutobo.Modules
 
         public bool SpacerBeforeModule => this.Value<bool>(Constants.Compositions.Module.Fields.SpacerBeforeModule);
 
-
+        public int SortOrder { get; set; }
 
         public MutoboContentModule(
             IPublishedElement content,
@@ -30,7 +31,7 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public virtual IHtmlContent RenderModule(HtmlHelper helper)
+        public virtual IHtmlContent RenderModule(IHtmlHelper helper)
         {
             throw new System.NotImplementedException();
         }

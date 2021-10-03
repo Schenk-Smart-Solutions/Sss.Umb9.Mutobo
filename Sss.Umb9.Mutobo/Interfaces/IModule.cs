@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,6 @@ namespace Sss.Umb9.Mutobo.Interfaces
     {
         string ModuleTitle { get; }
         bool SpacerAfterModule { get; }
-        IHtmlContent RenderModule(HtmlHelper helper);
+        IHtmlContent RenderModule(IHtmlHelper helper);
     }
 }

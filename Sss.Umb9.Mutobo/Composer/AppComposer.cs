@@ -37,6 +37,7 @@ namespace Sss.Umb9.Mutobo.Composer
            
             builder.Services.AddSingleton<IImageService, ImageService>();
             builder.Services.AddSingleton<IConfigurationService, ConfigurationService>();
-                    }
+            builder.Services.AddSingleton<IMutoboContentService, MutoboContentService>();
+        }
     }
 }

@@ -18,17 +18,17 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 {
     public class ArticlePageController : BasePageController
     {
-        private readonly IImageService _imageService;
+       
 
         public ArticlePageController(
             ILogger<RenderController> logger, 
             ICompositeViewEngine compositeViewEngine, 
             IUmbracoContextAccessor umbracoContextAccessor,
             IImageService imageService) 
-            : base(logger, compositeViewEngine, umbracoContextAccessor)
+            : base(logger, compositeViewEngine, umbracoContextAccessor, imageService)
         {
 
-            _imageService = imageService;
+          
         }
 
 
@@ -40,11 +40,11 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 
 
             model.EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
-                _imageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages), width: 500, height: 500)  :
+                ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages), width: 500, height: 500)  :
                 null;
 
 
-            return CurrentTemplate<ArticlePage>(model);
+            return CurrentTemplate(model);
         }
     }
 }

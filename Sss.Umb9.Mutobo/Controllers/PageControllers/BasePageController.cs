@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Sss.Umb9.Mutobo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,18 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 {
     public class BasePageController : RenderController
     {
-        
+
+        protected readonly IImageService ImageService;
 
 
         public BasePageController(
             ILogger<RenderController> logger,
             ICompositeViewEngine compositeViewEngine,
-            IUmbracoContextAccessor umbracoContextAccessor)
+            IUmbracoContextAccessor umbracoContextAccessor,
+            IImageService imageService)
             : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
-           
+            ImageService = imageService;
         }
 
 
