@@ -1,0 +1,27 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using System.Threading;
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@* the fun starts here *@
+
+
+
+<!DOCTYPE html>
+<html lang="@Thread.CurrentThread.CurrentUICulture.Name">
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="inline-css-bundle" />
+
+    <title>
+
+    </title>
+</head>
+<body>
+    <p-general>
+        @RenderBody()
+    </p-general>
+    <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>
+</body>
+</html>
+

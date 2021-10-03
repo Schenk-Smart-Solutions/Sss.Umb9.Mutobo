@@ -1,0 +1,17 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Sss.Umb9.Mutobo.PageModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<o-body>
+    <h1>@Model.PageTitle</h1>
+    @if (Model.Modules != null && Model.Modules.Any())
+    {
+        foreach (var module in Model.Modules)
+        {
+            @module.RenderModule(this.Html)
+        }
+    }
+</o-body>
