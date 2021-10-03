@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sss.Umb9.Mutobo.Components;
 using Sss.Umb9.Mutobo.Interfaces;
 using Sss.Umb9.Mutobo.Services;
 using System;
@@ -19,13 +20,14 @@ namespace Sss.Umb9.Mutobo.Composer
     {
         public void Compose(IUmbracoBuilder builder)
         {
+            AddComponents(builder);
             RegisterServices(builder);
         }
 
 
         private void AddComponents(IUmbracoBuilder builder)
         {
-            //composition.Components().Append<ApiConfigurationComponent>();
+            builder.Components().Append<MinifierComponent>();
             //composition.Components().Append<SearchConfigurationComponent>();
             //composition.Components().Append<HtmlMinifierComponent>();
             //composition.Components().Append<CustomDropDownPopulateComponent>();

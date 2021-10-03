@@ -43,6 +43,7 @@
 
     <ItemGroup>
       <Folder Include="uSync\v9\ContentTypes\" />
+      <Folder Include="wwwroot\Smidge\" />
     </ItemGroup>
 
     <!-- Set this to true if ModelsBuilder mode is not InMemoryAuto-->
