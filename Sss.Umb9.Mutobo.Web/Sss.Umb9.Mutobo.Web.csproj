@@ -17,17 +17,25 @@
     <ItemGroup>
         <Content Include="App_Plugins/**" CopyToOutputDirectory="Always" />
         <Content Include="umbraco/**" CopyToOutputDirectory="Always" />
+        <Compile Remove="wwwroot\media\**" />
         <Content Remove="umbraco/Data/**" />
         <Content Remove="umbraco/Logs/**" />
         <Content Remove="umbraco/mediacache/**" />
         <Content Remove="umbraco/models/**" />
+        <Content Remove="wwwroot\media\**" />
         <Compile Include="umbraco/models/**" Exclude="**/*.flag" />
     </ItemGroup>
 
 
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Sss.Umb9.Mutobo\Sss.Umb9.Mutobo.csproj" />
+      <EmbeddedResource Remove="wwwroot\media\**" />
+      <None Remove="wwwroot\media\**" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
       <ProjectReference Include="..\Sss.Umb9.Mutobo\Sss.Umb9.Mutobo.csproj" />
     </ItemGroup>
 
