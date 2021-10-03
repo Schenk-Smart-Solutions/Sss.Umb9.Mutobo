@@ -18,11 +18,13 @@
         <Content Include="App_Plugins/**" CopyToOutputDirectory="Always" />
         <Content Include="umbraco/**" CopyToOutputDirectory="Always" />
         <Compile Remove="wwwroot\media\**" />
+        <Compile Remove="wwwroot\web-components-cms-template-base\**" />
         <Content Remove="umbraco/Data/**" />
         <Content Remove="umbraco/Logs/**" />
         <Content Remove="umbraco/mediacache/**" />
         <Content Remove="umbraco/models/**" />
         <Content Remove="wwwroot\media\**" />
+        <Content Remove="wwwroot\web-components-cms-template-base\**" />
         <Compile Include="umbraco/models/**" Exclude="**/*.flag" />
     </ItemGroup>
 
@@ -30,7 +32,9 @@
 
     <ItemGroup>
       <EmbeddedResource Remove="wwwroot\media\**" />
+      <EmbeddedResource Remove="wwwroot\web-components-cms-template-base\**" />
       <None Remove="wwwroot\media\**" />
+      <None Remove="wwwroot\web-components-cms-template-base\**" />
     </ItemGroup>
 
 
