@@ -27,4 +27,5 @@ Umbraco 9 based Magic Umbraco Toolbox.
 6. cd ./Sss.Umb9.Mutobo.Web
 7. dot net run
 8. go to the url showed in terminal and perform the umbraco installtion
+9. perform a uSync-Import (full)
        
