@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Sss.Umb9.Mutobo.PageModels.ArticlePage>
+@{
+    Layout = null;
+}
+
+
+
+<h1>@Model.PageTitle</h1>
+
+
+@if (Model.EmotionImages != null && Model.EmotionImages.Any())
+{
+    @foreach (var img in Model.EmotionImages)
+    { 
+    
+        <img src="@img.DefaultSource.Src" alt="@img.Alt" />
+    }
+
+
+}
+

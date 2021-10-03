@@ -1,0 +1,15 @@
+﻿@model Sss.Umb9.Mutobo.Modules.Accordeon
+<m-details>
+    <details >
+        <summary>
+            @Model.Summary.ToUpper()
+
+         
+        </summary>
+        <p>
+    
+            @Html.Raw(Model.Details)
+            <a href="#" class="close">"TRANSLATE"</a>
+        </p>
+    </details>
+</m-details>
