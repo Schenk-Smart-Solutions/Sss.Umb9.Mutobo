@@ -1,0 +1,3 @@
+[submodule "Sss.Umb9.Mutobo.Web/wwwroot/web-components-cms-template-base"]
+	path = Sss.Umb9.Mutobo.Web/wwwroot/web-components-cms-template-base
+	url = https://github.com/roli81/web-components-cms-template-base.git
