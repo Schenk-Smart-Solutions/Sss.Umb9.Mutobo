@@ -33,7 +33,7 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public override IHtmlContent RenderModule(IHtmlHelper helper)
+        public async Task<IHtmlContent> RenderModule(IHtmlHelper helper)
         {
             var bld = new StringBuilder();
 
@@ -61,8 +61,9 @@ namespace Sss.Umb9.Mutobo.Modules
                     break;
             }
 
+            
 
-            return new HtmlString(bld.ToString());
+            return await Task.FromResult<IHtmlContent>(new HtmlString(bld.ToString()));
         }
     }
 }

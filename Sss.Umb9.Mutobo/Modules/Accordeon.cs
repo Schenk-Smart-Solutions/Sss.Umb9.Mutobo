@@ -27,11 +27,9 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public override IHtmlContent RenderModule(IHtmlHelper helper)
+        public async Task<IHtmlContent> RenderModule(IHtmlHelper helper)
         {
-            var bld = new StringBuilder();
-            bld.Append(helper.PartialAsync("~/Views/Modules/Accordeon.cshtml", this, helper.ViewData));
-            return base.RenderModule(helper);
+            return await helper.PartialAsync("~/Views/Modules/Accordeon.cshtml", this, helper.ViewData);
         }
     }
 }

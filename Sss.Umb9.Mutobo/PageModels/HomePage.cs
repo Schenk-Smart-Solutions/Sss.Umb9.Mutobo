@@ -1,4 +1,5 @@
-﻿using Sss.Umb9.Mutobo.Modules;
+﻿using Sss.Umb9.Mutobo.Interfaces;
+using Sss.Umb9.Mutobo.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace Sss.Umb9.Mutobo.PageModels
         {
         }
 
-        public IEnumerable<MutoboContentModule> Modules { get; set; }
+        public IEnumerable<IModule> Modules { get; set; }
     }
 }

@@ -62,5 +62,34 @@ namespace Sss.Umb9.Mutobo.Services
             return result;
         }
 
+
+        public IEnumerable<TextImageSlide> GetDoubleSlides(IPublishedElement content, string fieldName, int? width = null, int? height = null,
+    bool isGoldenRatio = false)
+        {
+
+            var result = new List<TextImageSlide>();
+            if (content.HasValue(fieldName))
+            {
+                var slideContent = content.Value<IEnumerable<IPublishedElement>>(fieldName);
+
+                foreach (var slideNode in slideContent)
+                {
+
+                    var textImageComponent = new TextImageSlide(slideNode, null);
+
+                    result.Add(new TextImageSlide(slideNode, null)
+                    {
+                        Image = slideNode.HasValue(DocumentTypes.Picture.Fields.Image) ? _imageService.GetImage(
+                           slideNode.Value<IPublishedContent>(DocumentTypes.TextImageSlide.Fields.Image), width, height, isGoldenRatio: isGoldenRatio) : null
+                    });
+
+
+
+                }
+
+            }
+
+            return result;
+        }
     }
 }

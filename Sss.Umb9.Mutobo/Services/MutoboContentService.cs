@@ -40,7 +40,7 @@ namespace Sss.Umb9.Mutobo.Services
             ImageService = imageService;
         }
 
-        private IEnumerable<MutoboContentModule> GetContent(IPublishedContent content, string fieldName)
+        private IEnumerable<IModule> GetContent(IPublishedContent content, string fieldName)
         {
             if (content.HasValue(fieldName))
             {
@@ -141,7 +141,7 @@ namespace Sss.Umb9.Mutobo.Services
                         case DocumentTypes.DoubleSliderComponent.Alias:
                             result.Add(new DoubleSliderComponent(element.value, null)
                             {
-                                Slides = SliderService.GetSlides(element.value, DocumentTypes.DoubleSliderComponent.Fields.Slides) as IEnumerable<TextImageSlide>,
+                                Slides = SliderService.GetDoubleSlides(element.value, DocumentTypes.DoubleSliderComponent.Fields.Slides) as IEnumerable<TextImageSlide>,
                                 SortOrder = element.index
                             });
                             break;

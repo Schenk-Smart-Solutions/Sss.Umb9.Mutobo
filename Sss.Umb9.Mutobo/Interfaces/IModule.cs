@@ -14,6 +14,11 @@ namespace Sss.Umb9.Mutobo.Interfaces
     {
         string ModuleTitle { get; }
         bool SpacerAfterModule { get; }
-        IHtmlContent RenderModule(IHtmlHelper helper);
+
+
+        Task<IHtmlContent> RenderModule(IHtmlHelper helper)
+        {
+            return Task.FromResult<IHtmlContent>(new HtmlString("No Rendering for Module"));
+        }
     }
 }

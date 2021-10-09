@@ -1,4 +1,6 @@
-﻿@model Sss.Umb9.Mutobo.Modules.DoubleSliderComponent
+﻿
+@model Sss.Umb9.Mutobo.Modules.DoubleSliderComponent
+
 
 
 
@@ -49,7 +51,9 @@
                 </p>
                 @if (slide.Link != null)
                 {
-                    <a href="@(slide.Link?.Url ?? "#")" target="@(slide.Link?.Target ?? string.Empty)">@Current.UmbracoHelper.GetDictionaryValue(DictionaryKeys.Global.ReadMore)</a>}
+                    <a href="@(slide.Link?.Url ?? "#")" target="@(slide.Link?.Target ?? string.Empty)">Mehr erfahren</a>
+                }
             </div>
-        </div>}
+        </div>
+     }
 </third-party-macro-carousel>

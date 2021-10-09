@@ -11,7 +11,7 @@
     {
         foreach (var module in Model.Modules)
         {
-            @module.RenderModule(this.Html)
+            @await module.RenderModule(this.Html)
         }
     }
 </o-body>

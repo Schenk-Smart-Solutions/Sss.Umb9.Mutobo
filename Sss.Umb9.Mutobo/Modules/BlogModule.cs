@@ -26,11 +26,9 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public override IHtmlContent RenderModule(IHtmlHelper helper)
-        {
-            var bld = new StringBuilder();
-            bld.Append(helper.PartialAsync("~/Views/Modules/BlogList.cshtml", this, helper.ViewData));
-            return new HtmlString(bld.ToString());
+        public async Task<IHtmlContent> RenderModule(IHtmlHelper helper)
+        { 
+            return await helper.PartialAsync("~/Views/Modules/BlogList.cshtml", this, helper.ViewData);
         }
     }
 }

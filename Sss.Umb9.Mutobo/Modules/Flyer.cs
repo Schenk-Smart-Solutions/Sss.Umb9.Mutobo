@@ -50,7 +50,7 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public override IHtmlContent RenderModule(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper)
+        public async Task<IHtmlContent> RenderModule(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper)
         {
             var bld = new StringBuilder();
 
@@ -59,13 +59,13 @@ namespace Sss.Umb9.Mutobo.Modules
                 switch (Direction)
                 {
                     case EDirection.Right:
-                        bld.Append(helper.PartialAsync("~/Views/Partials/Flyer_right.cshtml",
+                        bld.Append(await helper.PartialAsync("~/Views/Partials/Flyer_right.cshtml",
                             this, helper.ViewData));
                         break;
 
                     default:
                     case EDirection.Left:
-                        bld.Append(helper.PartialAsync("~/Views/Partials/Flyer_left.cshtml", this, helper.ViewData));
+                        bld.Append(await helper.PartialAsync("~/Views/Partials/Flyer_left.cshtml", this, helper.ViewData));
                         break;
                 }
             }
@@ -74,13 +74,12 @@ namespace Sss.Umb9.Mutobo.Modules
                 switch (Direction)
                 {
                     case EDirection.Right:
-                        bld.Append(helper.PartialAsync("~/Views/Partials/IntersectionFlyer_right.cshtml",
-                            this, helper.ViewData));
+                        bld.Append(await helper.PartialAsync("~/Views/Partials/IntersectionFlyer_right.cshtml", this, helper.ViewData));
                         break;
 
                     default:
                     case EDirection.Left:
-                        bld.Append(helper.PartialAsync("~/Views/Partials/IntersectionFlyer_left.cshtml", this, helper.ViewData));
+                        bld.Append(await helper .PartialAsync("~/Views/Partials/IntersectionFlyer_left.cshtml", this, helper.ViewData));
                         break;
                 }
 

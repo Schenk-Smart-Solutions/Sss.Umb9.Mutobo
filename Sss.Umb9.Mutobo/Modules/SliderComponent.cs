@@ -51,10 +51,10 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public override IHtmlContent RenderModule(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper)
+        public async Task<IHtmlContent> RenderModule(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper)
         {
             var bld = new StringBuilder();
-            bld.Append(helper.PartialAsync("~/Views/Modules/Slider.cshtml", this, helper.ViewData));
+            bld.Append(await helper.PartialAsync("~/Views/Modules/Slider.cshtml", this, helper.ViewData));
             return new HtmlString(bld.ToString());
         }
 

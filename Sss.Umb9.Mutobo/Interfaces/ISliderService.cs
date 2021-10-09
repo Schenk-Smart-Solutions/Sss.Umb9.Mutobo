@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sss.Umb9.Mutobo.PoCo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,8 @@ namespace Sss.Umb9.Mutobo.Interfaces
     {
         IEnumerable<ISliderItem> GetSlides(IPublishedElement content, string fieldName, int? width = null,
     int? height = null, bool isGoldenRatio = false);
+
+        IEnumerable<TextImageSlide> GetDoubleSlides(IPublishedElement content, string fieldName, int? width = null,
+       int? height = null, bool isGoldenRatio = false);
     }
 }

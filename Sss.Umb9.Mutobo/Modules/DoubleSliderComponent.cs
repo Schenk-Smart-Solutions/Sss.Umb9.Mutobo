@@ -56,11 +56,11 @@ namespace Sss.Umb9.Mutobo.Modules
             return result;
         }
 
-        public override IHtmlContent RenderModule(IHtmlHelper helper)
+        public async Task<IHtmlContent> RenderModule(IHtmlHelper helper)
         {
-            var bld = new StringBuilder();
-            bld.Append(helper.PartialAsync("~/Views/Modules/DoubleSlider.cshtml", this, helper.ViewData));
-            return new HtmlString(bld.ToString());
+           
+            return await helper.PartialAsync("~/Views/Modules/DoubleSlider.cshtml", this, helper.ViewData);
+           
         }
     }
 }
