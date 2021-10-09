@@ -6,27 +6,18 @@
 }
 
 
-<h1>@Model.PageTitle</h1>
 
+<o-body>
+    @Html.Partial("~/Views/Partials/ArticleContent.cshtml", Model)
 
-@if (Model.EmotionImages != null && Model.EmotionImages.Any())
-{
-    @foreach (var img in Model.EmotionImages)
+    @if (Model.Modules != null && Model.Modules.Any())
     {
-
-        <img src="@img.DefaultSource.Src" alt="@img.Alt" />
+        foreach (var module in Model.Modules)
+        {
+            @module.RenderModule(this.Html)
+        }
     }
-
-
-}
-
+</o-body>
 
 
 
-@if (Model.Modules != null && Model.Modules.Any())
-{
-    foreach (var module in Model.Modules)
-    {
-        @module.RenderModule(this.Html)
-    }
-}

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Sss.Umb9.Mutobo.Enum;
+using Sss.Umb9.Mutobo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Sss.Umb9.Mutobo.PoCo
 {
-    public class Image
+    public class Image: ISliderItem
     {
         public IPublishedContent ImageNode { get; set; }
         public IEnumerable<ImageSource> Sources { get; set; }

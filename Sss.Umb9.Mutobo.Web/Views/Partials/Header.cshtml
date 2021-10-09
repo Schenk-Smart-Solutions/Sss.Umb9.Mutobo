@@ -1,12 +1,31 @@
 ﻿@model Sss.Umb9.Mutobo.Interfaces.IHeaderConfiguration
 
-<o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-">
 
+
+<o-header menu-icon="true" namespace="header-">
+
+    <a-logo namespace="logo-" src="@Model.Logo.DefaultSource.Src" href="@Model.LogoUrl">
+        <style>
+            :host {
+                --logo-height: 170px;
+            }
+        </style>
+    </a-logo>
+
+
+    <span style="font-size: 1.2em; font-weight: bold; margin: 0 0 1em 0;">SMART AND SIMPLE AS NATURE</span>
 
     @if (Model.NavigationItems != null && Model.NavigationItems.Any())
     {
-        <m-navigation hover="false" namespace="navigation-" mobile-breakpoint="0vw" no-scroll="nav-open">
+        <m-navigation namespace="navigation-" hit-area="false" hover="true" no-scroll="nav-open">
+
             <ul>
+                <li>
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+
                 @foreach (var navItem in Model.NavigationItems)
                 {
                     <li>
