@@ -99,7 +99,7 @@ namespace Sss.Umb9.Mutobo.Services
 
 
                             sliderModule.Slides = SliderService.GetSlides(element.value,
-                                DocumentTypes.SliderComponent.Fields.Slides, sliderModule.Width);
+                                DocumentTypes.SliderComponent.Fields.Slides, sliderModule.Width, sliderModule.Height);
                             result.Add(sliderModule);
                             break;
 
@@ -114,8 +114,8 @@ namespace Sss.Umb9.Mutobo.Services
                             picModule.Image = element.value.HasValue(DocumentTypes.Picture.Fields.Image)
                                 ? ImageService.GetImage(
                                     element.value.Value<IPublishedContent>(DocumentTypes.Picture.Fields.Image),
-                                    height: picModule.Height,
-                                    width: picModule.Width)
+                                    height: 450,
+                                    width: 800)
                                 : null;
                             result.Add(picModule);
                             break;
@@ -183,8 +183,8 @@ namespace Sss.Umb9.Mutobo.Services
                     {
                         EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
                         ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
-                        width: 500,
-                        height: 500) : null,
+                        width: 800,
+                        height: 450) : null,
                        
                     };
 
@@ -193,8 +193,8 @@ namespace Sss.Umb9.Mutobo.Services
                     {
                         EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
                         ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
-                        width: 500,
-                        height: 500) : null,
+                        width: 800,
+                        height: 450) : null,
                         Modules = CurrentPage.HasValue(DocumentTypes.ContentPage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.ContentPage.Fields.Modules) : null
                     };
 
@@ -276,7 +276,7 @@ namespace Sss.Umb9.Mutobo.Services
             var result = new List<Image>();
 
             if (content.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages))
-                result.AddRange(ImageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages)));
+                result.AddRange(ImageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages), width: 800, height: 450));
 
             return result;
         }

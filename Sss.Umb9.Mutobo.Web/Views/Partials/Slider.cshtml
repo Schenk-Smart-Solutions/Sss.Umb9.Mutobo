@@ -10,7 +10,7 @@
     {
         if (media is Sss.Umb9.Mutobo.PoCo.Image image)
         {
-            @image.RenderWcPictureTag(nameSpace: Model.GetPictureNameSpace(), useSources: true) 
+            <a-picture defaultsource="@image.DefaultSource.Src" sources="@image.GetSourcesAsJSON()"></a-picture>
         }
         else if (media is Sss.Umb9.Mutobo.PoCo.Picture picture)
         {

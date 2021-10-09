@@ -2,22 +2,27 @@
 @using Sss.Umb9.Mutobo.PoCo
 @model Sss.Umb9.Mutobo.Modules.SliderComponent
 
-<third-party-macro-carousel pagination loop height="@(Model.Height != null ? $"{Model.Height}px" : "auto")" namespace="carousel-" interval="@(Model.Interval ?? 5000)">
-    @foreach (var media in Model.Slides)
-    {
-        if (media is Sss.Umb9.Mutobo.PoCo.Image image)
+<div>
+    <third-party-macro-carousel pagination loop height="@(Model.Height != null ? $"{Model.Height}px" : "auto")" namespace="carousel-" interval="@(Model.Interval ?? 5000)">
+        @foreach (var media in Model.Slides)
         {
-            @image.RenderWcPictureTag(nameSpace: Model.GetPictureNameSpace(), useSources: true)
-        }
-        else if (media is Sss.Umb9.Mutobo.PoCo.Picture picture)
-        {
-            @picture.Image.RenderWcPictureTag(nameSpace: Model.GetPictureNameSpace(), useSources: true)
-        }
-        else if (media is IVideoComponent video)
-        {
+            if (media is Sss.Umb9.Mutobo.PoCo.Image image)
+            {
 
-            @await Html.PartialAsync("~/Views/Modules/VideoComponent.cshtml", video)
-        }
+                <a-picture defaultsource="@image.DefaultSource.Src" sources="@image.GetSourcesAsJSON()"></a-picture>
 
-    }
-</third-party-macro-carousel>
+            }
+            else if (media is Sss.Umb9.Mutobo.PoCo.Picture picture)
+            {
+                <a-picture defaultsource="@picture.Image.DefaultSource.Src" sources="@picture.Image.GetSourcesAsJSON()"></a-picture>
+
+            }
+            else if (media is IVideoComponent video)
+            {
+
+                @await Html.PartialAsync("~/Views/Modules/VideoComponent.cshtml", video)
+            }
+
+        }
+    </third-party-macro-carousel>
+</div>

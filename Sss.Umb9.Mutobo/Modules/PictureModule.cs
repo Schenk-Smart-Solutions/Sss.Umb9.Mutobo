@@ -34,9 +34,7 @@ namespace Sss.Umb9.Mutobo.Modules
 
         public  async Task<IHtmlContent> RenderModule(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper)
         {
-            var bld = new StringBuilder();
-            bld.Append($"<div>{Image.RenderWcPictureTag(nameSpace: "picture-", width: $"{Image.Width}", height: $"{Image.Height}")}</div>");
-            return await Task.FromResult<IHtmlContent>(new HtmlString(bld.ToString()));
+            return await helper.PartialAsync("~/Views/Modules/PictureModule.cshtml", this, helper.ViewData);
         }
     }
 }
