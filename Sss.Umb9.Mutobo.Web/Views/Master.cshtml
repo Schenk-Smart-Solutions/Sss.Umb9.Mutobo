@@ -1,7 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @using System.Threading;
 
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Sss.Umb9.Mutobo.PageModels.BasePage>
 @* the fun starts here *@
 
 
@@ -10,17 +10,17 @@
 <html lang="@Thread.CurrentThread.CurrentUICulture.Name">
 <head>
     <meta charset=UTF-8>
-    <meta name=viewport content="width=device-width, initial-scale=1.0">cd    
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
     <link href="~/web-components-cms-template-base/src/css/variables.css" rel="stylesheet" />
     <link href="~/web-components-cms-template-base/src/css/misc.css" rel="stylesheet" />
     <link href="~/web-components-cms-template-base/src/css/fonts.css" rel="stylesheet" />
-    <title>
-
-    </title>
+    <title>@Model.PageTitle</title>
 </head>
 <body>
     <p-general>
+        @Html.Partial("~/Views/Partials/Header.cshtml", Model.HeaderConfiguration)
         @RenderBody()
+        @Html.Partial("~/Views/Partials/Footer.cshtml", Model.FooterConfiguration as Sss.Umb9.Mutobo.Configuration.FooterConfiguration)
     </p-general>
     <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>
 </body>

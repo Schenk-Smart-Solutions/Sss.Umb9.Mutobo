@@ -24,8 +24,10 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
             ILogger<RenderController> logger, 
             ICompositeViewEngine compositeViewEngine, 
             IUmbracoContextAccessor umbracoContextAccessor,
-            IImageService imageService) 
-            : base(logger, compositeViewEngine, umbracoContextAccessor, imageService)
+            IImageService imageService,
+            IPageLayoutService pageLayoutService,
+            IMutoboContentService contentService) 
+            : base(logger, compositeViewEngine, umbracoContextAccessor, imageService, pageLayoutService, contentService)
         {
 
           
@@ -44,7 +46,7 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
                 null;
 
 
-            return CurrentTemplate(model);
+            return base.Index();
         }
     }
 }

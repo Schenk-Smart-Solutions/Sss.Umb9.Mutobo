@@ -1,4 +1,5 @@
 ﻿using Sss.Umb9.Mutobo.Constants;
+using Sss.Umb9.Mutobo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace Sss.Umb9.Mutobo.PageModels
         }
 
 
-        //public IHeaderConfiguration HeaderConfiguration { get; set; }
-        //public IFooterConfiguration FooterConfiguration { get; set; }
+        public IHeaderConfiguration HeaderConfiguration { get; set; }
+        public IFooterConfiguration FooterConfiguration { get; set; }
 
         public string PageTitle => Content.Value<string>(DocumentTypes.BasePage.Fields.PageTitle);
 

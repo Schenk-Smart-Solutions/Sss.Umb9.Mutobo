@@ -48,7 +48,7 @@ namespace Sss.Umb9.Mutobo.Constants
 
         public static class BasePage
         {
-            public static string Alias = "basePage";
+            public const string Alias = "basePage";
 
 
             public static class Fields
@@ -79,7 +79,7 @@ namespace Sss.Umb9.Mutobo.Constants
 
         public static class SearchResults
         {
-            public static string Alias = "searchResults";
+            public const string Alias = "searchResults";
 
 
             public static class Fields
@@ -96,21 +96,21 @@ namespace Sss.Umb9.Mutobo.Constants
 
         public static class HomePage
         {
-            public static string Alias = "homePage";
+            public const string Alias = "homePage";
 
             public static class Fields
             {
-                public static string Disturber = "disturber";
-                public static string SloganTitle = "sloganTitle";
-                public static string SloganSubTitle = "sloganSubTitle";
-                public static string Modules = "modules";
+                public const string Disturber = "disturber";
+                public const string SloganTitle = "sloganTitle";
+                public const string SloganSubTitle = "sloganSubTitle";
+                public const string Modules = "modules";
 
 
             }
         }
         public static class ArticlePage
         {
-            public static string Alias = "articlePage";
+            public const string Alias = "articlePage";
 
             public static class Fields
             {
@@ -126,7 +126,7 @@ namespace Sss.Umb9.Mutobo.Constants
 
         public static class TeaserPage
         {
-            public static string Alias = "teaserPage";
+            public const string Alias = "teaserPage";
 
             public static class Fields
             {
@@ -139,7 +139,7 @@ namespace Sss.Umb9.Mutobo.Constants
 
         public static class Theme
         {
-            public static string Alias = "theme";
+            public const string Alias = "theme";
 
             public static class Fields
             {
@@ -166,7 +166,7 @@ namespace Sss.Umb9.Mutobo.Constants
 
         public static class ImpressumPage
         {
-            public static string Alias = "impressumPage";
+            public const string Alias = "impressumPage";
 
             public static class Fields
             {

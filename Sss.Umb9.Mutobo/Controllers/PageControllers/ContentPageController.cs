@@ -18,17 +18,18 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 {
     public class ContentPageController : ArticlePageController
     {
-        private readonly IMutoboContentService _contentService;
+
 
         public ContentPageController(
             ILogger<RenderController> logger,
             ICompositeViewEngine compositeViewEngine,
             IUmbracoContextAccessor umbracoContextAccessor,
             IImageService imageService,
-            IMutoboContentService contentService)
-                : base(logger, compositeViewEngine, umbracoContextAccessor, imageService)
+            IMutoboContentService contentService,
+            IPageLayoutService pageLayoutService)
+                : base(logger, compositeViewEngine, umbracoContextAccessor, imageService, pageLayoutService, contentService)
         {
-            _contentService = contentService;
+           
         }
 
         public override IActionResult Index()
@@ -40,8 +41,8 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
              CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
              width: 500,
              height: 500) : null;
-            model.Modules = _contentService.GetContent(CurrentPage, DocumentTypes.ContentPage.Fields.Modules);
-            return CurrentTemplate(model);
+            model.Modules = ContententService.GetContent(CurrentPage, DocumentTypes.ContentPage.Fields.Modules);
+            return base.Index();
         }
 
     }

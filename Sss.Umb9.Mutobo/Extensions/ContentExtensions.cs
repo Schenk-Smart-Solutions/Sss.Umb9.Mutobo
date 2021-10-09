@@ -1,4 +1,5 @@
-﻿using Sss.Umb9.Mutobo.Constants;
+﻿using Microsoft.AspNetCore.Http;
+using Sss.Umb9.Mutobo.Constants;
 using Sss.Umb9.Mutobo.Interfaces;
 using Sss.Umb9.Mutobo.PoCo;
 using System;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
@@ -59,21 +59,21 @@ namespace Sss.Umb9.Mutobo.Extensions
 
         }
 
-        public static Image GetImage(this IPublishedContent content, string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop)
+        public static Image GetImage(this IPublishedContent content, HttpContext context, string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop)
         {
+            var serviceCollection = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
 
-            var imageService = (IImageService)DependencyResolver.Current.GetService(typeof(IImageService));
-
+            
+            var imageService = (IImageService)context.RequestServices.GetService(typeof(IImageService));
             return content.HasValue(field)
                 ? imageService.GetImage(content.Value<IPublishedContent>(field), width, height, imageCropMode)
                 : null;
         }
 
-        public static Image GetImage(this IPublishedElement element, string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop, bool useSources = false)
+        public static Image GetImage(this IPublishedElement element, HttpContext context, string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop, bool useSources = false)
         {
 
-            var imageService = (IImageService)DependencyResolver.Current.GetService(typeof(IImageService));
-
+            var imageService = (IImageService)context.RequestServices.GetService(typeof(IImageService));
             return element.HasValue(field)
                 ? imageService.GetImage(element.Value<IPublishedContent>(field), width, height, imageCropMode, isGoldenRatio: useSources)
                 : null;
@@ -82,20 +82,20 @@ namespace Sss.Umb9.Mutobo.Extensions
 
 
 
-        public static IEnumerable<Image> GetImages(this IPublishedContent content, string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop, bool useSources = false)
+        public static IEnumerable<Image> GetImages(this IPublishedContent content, HttpContext context,string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop, bool useSources = false)
         {
 
-            var imageService = (IImageService)DependencyResolver.Current.GetService(typeof(IImageService));
+            var imageService = (IImageService)context.RequestServices.GetService(typeof(IImageService));
 
             return content.HasValue(field)
                 ? imageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(field), width, height, imageCropMode, isGoldenRatio: useSources)
                 : null;
         }
 
-        public static IEnumerable<Image> GetImages(this IPublishedElement element, string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop)
+        public static IEnumerable<Image> GetImages(this IPublishedElement element, HttpContext context, string field, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop)
         {
 
-            var imageService = (IImageService)DependencyResolver.Current.GetService(typeof(IImageService));
+            var imageService = (IImageService)context.RequestServices.GetService(typeof(IImageService));
 
             return element.HasValue(field)
                 ? imageService.GetImages(element.Value<IEnumerable<IPublishedContent>>(field), width, height, imageCropMode)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.Extensions.Logging;
+using Sss.Umb9.Mutobo.Common.Exceptions;
 using Sss.Umb9.Mutobo.Constants;
 using Sss.Umb9.Mutobo.Interfaces;
 using Sss.Umb9.Mutobo.Modules;
@@ -17,24 +18,34 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 {
     public class HomePageController : BasePageController
     {
-        private readonly IMutoboContentService _contentService;
+ 
+
+
         public IEnumerable<MutoboContentModule> Modules { get; set; }
         public HomePageController(
             ILogger<HomePageController> logger, 
             ICompositeViewEngine compositeViewEngine, 
             IUmbracoContextAccessor umbracoContextAccessor, 
             IImageService imageService,
-            IMutoboContentService contentService) 
-                : base(logger, compositeViewEngine, umbracoContextAccessor, imageService)
+            IMutoboContentService contentService,
+            IPageLayoutService pageLayoutService) 
+                : base(logger, compositeViewEngine, umbracoContextAccessor, imageService, pageLayoutService, contentService)
         {
-            _contentService = contentService;
+        
+
         }
 
         public override IActionResult Index()
         {
             var model = new HomePage(CurrentPage);
-            model.Modules = _contentService.GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules);
-            return CurrentTemplate(model);
+            model.Modules = ContententService.GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules);
+
+            
+
+
+
+
+            return base.Index();
         }
     }
 }

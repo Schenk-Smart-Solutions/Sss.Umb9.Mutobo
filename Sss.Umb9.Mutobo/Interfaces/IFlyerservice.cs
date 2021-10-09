@@ -1,5 +1,4 @@
 ﻿using Sss.Umb9.Mutobo.Modules;
-using Sss.Umb9.Mutobo.PageModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +8,8 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Sss.Umb9.Mutobo.Interfaces
 {
-    public interface IMutoboContentService
+    public interface IFlyerservice
     {
-        IEnumerable<MutoboContentModule> GetContent(IPublishedContent content, string fieldName);
-
-        BasePage GetPageModel(IPublishedContent content);
+        IEnumerable<Flyer> GetFlyer(IPublishedContent node, bool firstPic = false);
     }
 }

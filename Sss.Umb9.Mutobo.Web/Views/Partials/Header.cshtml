@@ -1,0 +1,29 @@
+﻿@model Sss.Umb9.Mutobo.Interfaces.IHeaderConfiguration
+
+<o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-">
+
+
+    @if (Model.NavigationItems != null && Model.NavigationItems.Any())
+    {
+        <m-navigation hover="false" namespace="navigation-" mobile-breakpoint="0vw" no-scroll="nav-open">
+            <ul>
+                @foreach (var navItem in Model.NavigationItems)
+                {
+                    <li>
+                        <a href="@navItem.Url" target="@(navItem.NewWindow ? "_blank" : string.Empty)">@navItem.Title</a>
+                        @if (navItem.Children.Any())
+                        {
+                            <ul>
+                                @foreach (var childNavItem in navItem.Children)
+                                {
+                                    <li><a href="@childNavItem.Url" target="@(childNavItem.NewWindow ? "_blank" : string.Empty)">@childNavItem.Title</a></li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+
+            </ul>
+        </m-navigation>
+    }
+</o-header>

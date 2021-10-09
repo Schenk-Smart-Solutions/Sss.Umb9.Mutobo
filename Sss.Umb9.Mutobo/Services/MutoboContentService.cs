@@ -3,6 +3,7 @@ using Sss.Umb9.Mutobo.Constants;
 using Sss.Umb9.Mutobo.Extensions;
 using Sss.Umb9.Mutobo.Interfaces;
 using Sss.Umb9.Mutobo.Modules;
+using Sss.Umb9.Mutobo.PageModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,8 +72,11 @@ namespace Sss.Umb9.Mutobo.Services
                             result.Add(new Flyer(element.value, null)
                             {
                                 SortOrder = element.index,
-                                Image = element.value.GetImage(DocumentTypes.Flyer.Fields.FlyerImage,
-                                    width: 900, imageCropMode: ImageCropMode.Max),
+                                Image =  element.value.HasValue(DocumentTypes.Flyer.Fields.FlyerImage) ? ImageService
+                                .GetImage(element.value.Value<IPublishedContent>(DocumentTypes.Flyer.Fields.FlyerImage),
+                                width: 900, 
+                                imageCropMode: ImageCropMode.Max) 
+                                : null,
                                 TeaserText = element.value.Value<string>(DocumentTypes.Flyer.Fields.FlyerTeaserText),
                                 Link = element.value.Value<Link>(DocumentTypes.Flyer.Fields.Link)
 
@@ -158,6 +162,25 @@ namespace Sss.Umb9.Mutobo.Services
             }
 
             return null;
+        }
+
+        public BasePage GetPageModel(IPublishedContent content)
+        {
+            switch (content.ContentType.Alias)
+            {
+                case DocumentTypes.BasePage.Alias:
+                default:
+                    return new BasePage(content);
+                    
+                case DocumentTypes.ArticlePage.Alias:
+                    return new ArticlePage(content);
+                    
+                case DocumentTypes.ContentPage.Alias:
+                    return new ContentPage(content);
+                
+                case DocumentTypes.HomePage.Alias:
+                    return new HomePage(content);
+            }
         }
     }
 }
