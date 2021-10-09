@@ -11,7 +11,7 @@ namespace Sss.Umb9.Mutobo.Interfaces
 {
     public interface IMutoboContentService
     {
-        IEnumerable<MutoboContentModule> GetContent(IPublishedContent content, string fieldName);
+
 
         BasePage GetPageModel(IPublishedContent content);
     }

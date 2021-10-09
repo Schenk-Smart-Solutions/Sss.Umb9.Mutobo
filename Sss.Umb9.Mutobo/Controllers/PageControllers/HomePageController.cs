@@ -35,17 +35,5 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 
         }
 
-        public override IActionResult Index()
-        {
-            var model = new HomePage(CurrentPage);
-            model.Modules = ContententService.GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules);
-
-            
-
-
-
-
-            return base.Index();
-        }
     }
 }

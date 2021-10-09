@@ -34,14 +34,5 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
         }
 
 
-        public override IActionResult Index()
-        {
-
-            var model = new ArticlePage(CurrentPage);
-
-
-
-            return base.Index();
-        }
     }
 }

@@ -8,36 +8,38 @@
     @if (!string.IsNullOrEmpty(Model.PageTitle))
     {
 <h2>@Model.PageTitle.ToUpper()</h2>}
-    @if (Model.EmotionImages != null && Model.EmotionImages.Any())
+@if (Model.EmotionImages != null && Model.EmotionImages.Any())
+{
+    if (Model.EmotionImages.Count() < 2)
     {
-        if (Model.EmotionImages.Count() < 2)
+        var image = Model.EmotionImages.FirstOrDefault();
+
+        if (image != null)
         {
-            var image = Model.EmotionImages.FirstOrDefault();
+            @image.RenderWcPictureTag() }
+        }
+        else
+        {
 
-            if (image != null)
+            <partial name="~/Views/Partials/Slider.cshtml" model="new EmptySliderComponent()
             {
-@image.RenderWcPictureTag() }
-                }
-                else
-                {
-
-<partial name="~/Views/Partials/Slider.cshtml" model="new EmptySliderComponent()
-                {
-                    Slides = Model.EmotionImages,
-                    GalleryType = EGalleryType.Boxed,
-                    Width = 800,
-                    Height = 450,
-                }" />
+                Slides = Model.EmotionImages,
+                GalleryType = EGalleryType.Boxed,
+                Width = 800,
+                Height = 450,
+            }" />
                 
-                }
-            }
+        }
+    }
     @if (!Model.HideAbstract && !string.IsNullOrEmpty(Model.Abstract))
     {
-<p>@Model.Abstract</p>}
+        <p>@Model.Abstract</p>
+    }
     @if (!string.IsNullOrEmpty(Model.MainContent))
     {
-<div>
-    @Html.Raw(Model.MainContent)
-</div>}
+        <div>
+            @Html.Raw(Model.MainContent)
+        </div>
+    }
 </div>
 

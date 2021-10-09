@@ -4,6 +4,7 @@ using Sss.Umb9.Mutobo.Extensions;
 using Sss.Umb9.Mutobo.Interfaces;
 using Sss.Umb9.Mutobo.Modules;
 using Sss.Umb9.Mutobo.PageModels;
+using Sss.Umb9.Mutobo.PoCo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace Sss.Umb9.Mutobo.Services
             ImageService = imageService;
         }
 
-        public IEnumerable<MutoboContentModule> GetContent(IPublishedContent content, string fieldName)
+        private IEnumerable<MutoboContentModule> GetContent(IPublishedContent content, string fieldName)
         {
             if (content.HasValue(fieldName))
             {
@@ -88,19 +89,19 @@ namespace Sss.Umb9.Mutobo.Services
                         //case DocumentTypes.Teaser.Alias:
                         //    result.Add(GetTeaser(element.value, element.index));
                         //    break;
-                        //case DocumentTypes.SliderComponent.Alias:
-                        //    var sliderModule = new SliderComponent(element.value, null)
-                        //    {
-                        //        SortOrder = element.index
-                        //    };
+                        case DocumentTypes.SliderComponent.Alias:
+                            var sliderModule = new SliderComponent(element.value, null)
+                            {
+                                SortOrder = element.index
+                            };
 
-                        //    var useGoldenRatio = (sliderModule.Height == null && sliderModule.Width == null);
+                            var useGoldenRatio = (sliderModule.Height == null && sliderModule.Width == null);
 
 
-                        //    sliderModule.Slides = SliderService.GetSlides(element.value,
-                        //        DocumentTypes.SliderComponent.Fields.Slides, sliderModule.Width);
-                        //    result.Add(sliderModule);
-                        //    break;
+                            sliderModule.Slides = SliderService.GetSlides(element.value,
+                                DocumentTypes.SliderComponent.Fields.Slides, sliderModule.Width);
+                            result.Add(sliderModule);
+                            break;
 
 
 
@@ -140,6 +141,7 @@ namespace Sss.Umb9.Mutobo.Services
                         case DocumentTypes.DoubleSliderComponent.Alias:
                             result.Add(new DoubleSliderComponent(element.value, null)
                             {
+                                Slides = SliderService.GetSlides(element.value, DocumentTypes.DoubleSliderComponent.Fields.Slides) as IEnumerable<TextImageSlide>,
                                 SortOrder = element.index
                             });
                             break;
@@ -183,6 +185,7 @@ namespace Sss.Umb9.Mutobo.Services
                         ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
                         width: 500,
                         height: 500) : null,
+                       
                     };
 
                 case DocumentTypes.ContentPage.Alias:
@@ -192,10 +195,14 @@ namespace Sss.Umb9.Mutobo.Services
                         ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
                         width: 500,
                         height: 500) : null,
+                        Modules = CurrentPage.HasValue(DocumentTypes.ContentPage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.ContentPage.Fields.Modules) : null
                     };
 
                 case DocumentTypes.HomePage.Alias:
-                    return new HomePage(content);
+                    return new HomePage(content) 
+                    { 
+                        Modules = CurrentPage.HasValue(DocumentTypes.HomePage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules) : null
+                    };
             }
         }
     }
