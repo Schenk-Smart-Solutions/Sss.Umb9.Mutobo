@@ -1,0 +1,23 @@
+﻿@using Sss.Umb9.Mutobo.Interfaces
+@using Sss.Umb9.Mutobo.PoCo
+@model Sss.Umb9.Mutobo.Modules.SliderComponent
+
+<third-party-macro-carousel pagination loop height="@(Model.Height != null ? $"{Model.Height}px" : "auto")" namespace="carousel-" interval="@(Model.Interval ?? 5000)">
+    @foreach (var media in Model.Slides)
+    {
+        if (media is Sss.Umb9.Mutobo.PoCo.Image image)
+        {
+            @image.RenderWcPictureTag(nameSpace: Model.GetPictureNameSpace(), useSources: true)
+        }
+        else if (media is Sss.Umb9.Mutobo.PoCo.Picture picture)
+        {
+            @picture.Image.RenderWcPictureTag(nameSpace: Model.GetPictureNameSpace(), useSources: true)
+        }
+        else if (media is IVideoComponent video)
+        {
+
+            @Html.PartialAsync("~/Views/Modules/VideoComponent.cshtml", video)
+        }
+
+    }
+</third-party-macro-carousel>

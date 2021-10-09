@@ -31,11 +31,10 @@ namespace Sss.Umb9.Mutobo.Services
                     : base(logger)
         {
             _mediaService = mediaService;
-
-            
         }
 
-        public Image GetImage(IPublishedContent node, int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop, string nameSpace = "picture", bool isGoldenRatio = false)
+        public Image GetImage(IPublishedContent node, 
+            int? width = null, int? height = null, ImageCropMode imageCropMode = ImageCropMode.Crop, string nameSpace = "picture", bool isGoldenRatio = false)
         {
             if (node == null)
             {

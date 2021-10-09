@@ -484,7 +484,7 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-        public static class PersonnelCard
+        public static class PersonalCard
         {
             public const string Alias = "personnelCard";
 

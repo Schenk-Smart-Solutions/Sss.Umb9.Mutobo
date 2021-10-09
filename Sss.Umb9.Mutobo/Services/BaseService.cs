@@ -23,6 +23,7 @@ namespace Sss.Umb9.Mutobo.Services
 
         protected BaseService(ILogger logger)
         {
+            Logger = logger;
             //Context = context;
      
         }

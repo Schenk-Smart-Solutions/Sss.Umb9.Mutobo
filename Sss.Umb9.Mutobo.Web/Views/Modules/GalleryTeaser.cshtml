@@ -1,0 +1,25 @@
+﻿@using Sss.Umb9.Mutobo.Extensions
+@model IEnumerable<Sss.Umb9.Mutobo.PageModels.ArticlePage>
+<o-teaser-wrapper>
+    @foreach (var teaser in Model)
+    {
+        <m-teaser>
+            @if (teaser.EmotionImages.Any())
+            {
+                foreach (var image in teaser.EmotionImages.Take(1))
+                {
+
+                    <a href="@teaser.Content.GetDitUrl()" target="@teaser.Content.GetLinkTarget()">
+                        <figure>
+                            @image.RenderWcPictureTag("320", "200")
+                            <figcaption>
+                                <h3>@teaser.PageTitle</h3>
+                                <p>@teaser.Content.Value("abstract")</p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                }
+            }
+        </m-teaser>
+    }
+</o-teaser-wrapper>
