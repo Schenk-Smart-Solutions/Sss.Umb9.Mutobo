@@ -53,9 +53,7 @@ namespace Sss.Umb9.Mutobo.Modules
 
         public async Task<IHtmlContent> RenderModule(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper)
         {
-            var bld = new StringBuilder();
-            bld.Append(await helper.PartialAsync("~/Views/Modules/Slider.cshtml", this, helper.ViewData));
-            return new HtmlString(bld.ToString());
+            return await helper.PartialAsync("~/Views/Modules/Slider.cshtml", this, helper.ViewData);
         }
 
     }

@@ -16,7 +16,7 @@
         else if (media is IVideoComponent video)
         {
 
-            @Html.PartialAsync("~/Views/Modules/VideoComponent.cshtml", video)
+            @await Html.PartialAsync("~/Views/Modules/VideoComponent.cshtml", video)
         }
 
     }

@@ -86,9 +86,9 @@ namespace Sss.Umb9.Mutobo.Services
                             });
                             break;
 
-                        //case DocumentTypes.Teaser.Alias:
-                        //    result.Add(GetTeaser(element.value, element.index));
-                        //    break;
+                        case DocumentTypes.Teaser.Alias:
+                            result.Add(GetTeaser(element.value, element.index));
+                            break;
                         case DocumentTypes.SliderComponent.Alias:
                             var sliderModule = new SliderComponent(element.value, null)
                             {
@@ -141,7 +141,7 @@ namespace Sss.Umb9.Mutobo.Services
                         case DocumentTypes.DoubleSliderComponent.Alias:
                             result.Add(new DoubleSliderComponent(element.value, null)
                             {
-                                Slides = SliderService.GetDoubleSlides(element.value, DocumentTypes.DoubleSliderComponent.Fields.Slides) as IEnumerable<TextImageSlide>,
+                                Slides = SliderService.GetDoubleSlides(element.value, DocumentTypes.DoubleSliderComponent.Fields.Slides, 800, 450) as IEnumerable<TextImageSlide>,
                                 SortOrder = element.index
                             });
                             break;
@@ -204,6 +204,81 @@ namespace Sss.Umb9.Mutobo.Services
                         Modules = CurrentPage.HasValue(DocumentTypes.HomePage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules) : null
                     };
             }
+
+
+        }
+
+        private Teaser GetTeaser(IPublishedElement element, int index)
+        {
+
+            var teaser = new Teaser(element, null)
+            {
+                SortOrder = index
+            };
+
+
+            if (teaser.UseArticleData)
+            {
+                var article = teaser.Link?.Udi != null ?
+                    new ArticlePage(Context.Content.GetById(teaser.Link.Udi)) : null;
+
+                if (article == null)
+                    throw new Exception($"Please make sure that you have a linked article page when using article data.");
+
+                teaser.Images = GetHighlightImages(article.Content);
+
+                teaser.TeaserText = GetHighlightText(article.Content);
+                teaser.TeaserTitle = GetHighlightTitle(article.Content);
+            }
+            else
+            {
+                teaser.Images = element.HasValue(DocumentTypes.Teaser.Fields.Images)
+                    ? ImageService.GetImages(
+                        element.Value<IEnumerable<IPublishedContent>>(DocumentTypes.Teaser.Fields.Images), width: 800, height: 450)
+                    : null;
+                teaser.TeaserText = element.HasValue(DocumentTypes.Teaser.Fields.TeaserText) ?
+                    element.Value<string>(DocumentTypes.Teaser.Fields.TeaserText) : null;
+
+                teaser.TeaserTitle = element.HasValue(DocumentTypes.Teaser.Fields.TeaserTitle) ?
+                    element.Value<string>(DocumentTypes.Teaser.Fields.TeaserTitle) : null;
+            }
+
+
+            return teaser;
+
+        }
+
+        private string GetHighlightText(IPublishedContent content)
+        {
+            string result = null;
+
+            if (content.HasValue(DocumentTypes.ArticlePage.Fields.Abstract))
+                result = content.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract);
+
+
+            return result;
+        }
+
+        private string GetHighlightTitle(IPublishedContent content)
+        {
+            string result = null;
+
+
+            if (content.HasValue(DocumentTypes.BasePage.Fields.PageTitle))
+                result = content.Value<string>(DocumentTypes.BasePage.Fields.PageTitle);
+
+            return result;
+        }
+
+
+        private IEnumerable<Image> GetHighlightImages(IPublishedContent content)
+        {
+            var result = new List<Image>();
+
+            if (content.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages))
+                result.AddRange(ImageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages)));
+
+            return result;
         }
     }
 }

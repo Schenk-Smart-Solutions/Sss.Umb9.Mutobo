@@ -39,25 +39,23 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public async Task<IHtmlContent> RenderModule(IHtmlHelper helper)
+        public  async Task<IHtmlContent> RenderModule(IHtmlHelper helper)
         {
             var bld = new StringBuilder();
 
             switch (RenderAs)
             {
-
-                case EHighlightRendering.Teaser:
-                    bld.Append(await helper.PartialAsync("~/Views/Modules/NestedTeaser.cshtml", this));
-                    break;
                 default:
+                case EHighlightRendering.Teaser:
+                    return await helper.PartialAsync("~/Views/Modules/NestedTeaser.cshtml", this);
+    
+
                 case EHighlightRendering.Gallery:
-                    bld.Append(await helper.PartialAsync("~/Views/Modules/GalleryTeaser.cshtml", this));
-                    break;
+                    return await helper.PartialAsync("~/Views/Modules/GalleryTeaser.cshtml", this);
+                 
             }
 
-
-
-            return new HtmlString(bld.ToString());
+  
         }
     }
 }

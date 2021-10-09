@@ -26,7 +26,7 @@ namespace Sss.Umb9.Mutobo.Modules
         {
             var bld = new StringBuilder();
             bld.Append($"<article>{helper.Raw(RichText)}</article>");
-            return await Task.FromResult<IHtmlContent>(new HtmlString(bld.ToString()));
+            return new HtmlString(bld.ToString());
         }
     }
 }

@@ -18,11 +18,28 @@
 </head>
 <body>
     <p-general>
-        @Html.Partial("~/Views/Partials/Header.cshtml", Model.HeaderConfiguration)
+        @await Html.PartialAsync("~/Views/Partials/Header.cshtml", Model.HeaderConfiguration)
         @RenderBody()
-        @Html.Partial("~/Views/Partials/Footer.cshtml", Model.FooterConfiguration as Sss.Umb9.Mutobo.Configuration.FooterConfiguration)
+        @await Html.PartialAsync("~/Views/Partials/Footer.cshtml", Model.FooterConfiguration as Sss.Umb9.Mutobo.Configuration.FooterConfiguration)
     </p-general>
     <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>
+
+    <m-cookie-banner storage="localStorage" namespace="cookie-banner-">
+        <style>
+            :host {
+                z-index: 10;
+            }
+        </style>
+
+        <section>
+            <p>
+                Diese Seite verwenden Cookies und ähnliche Technologien um das Benutzererlebnis zu verbesseren. Mit der weiteren Nutzung dieser Webseite stimmst du der Verwendung von Cookies und ähnlichen Technologien zu.
+            </p>
+            <button>Ja, ich habe verstanden.</button>
+        </section>
+
+    </m-cookie-banner>
 </body>
+
 </html>
 

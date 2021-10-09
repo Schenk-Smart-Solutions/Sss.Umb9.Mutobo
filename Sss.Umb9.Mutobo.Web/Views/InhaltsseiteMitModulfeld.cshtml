@@ -7,7 +7,7 @@
 
 
 
-<o-body>
+<base-o-body>
     @await Html.PartialAsync("~/Views/Partials/ArticleContent.cshtml", Model)
 
     @if (Model.Modules != null && Model.Modules.Any())
@@ -17,7 +17,7 @@
             @module.RenderModule(this.Html)
         }
     }
-</o-body>
+</base-o-body>
 
 
 

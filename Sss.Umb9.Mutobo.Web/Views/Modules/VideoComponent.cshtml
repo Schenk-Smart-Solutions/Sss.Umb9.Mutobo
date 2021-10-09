@@ -1,14 +1,21 @@
 ﻿@model Sss.Umb9.Mutobo.Interfaces.IVideoComponent
 
+<div>
 @if (Model.Video != null)
 {
-    <a-video namespace="video-" controls height="@(Model.Height != null ? $"{Model.Height}px" : string.Empty)" width="@(Model.Width != null ? $"{Model.Width}px" : string.Empty)">
+    <a-video namespace="video-" controls >
+        <style>
+            :host {
+                width: 800px;
+            }
+        </style>
         <source src="@Model.Video.Source" type="video/mp4">
     </a-video>
 }
 else
 {
-    <a-video namespace="video-">
-        @Html.Raw(Model.Embedded)
-    </a-video>
+<a-video namespace="video-">
+    @Html.Raw(Model.Embedded)
+</a-video>
 }
+</div>

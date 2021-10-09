@@ -31,9 +31,6 @@ namespace Sss.Umb9.Mutobo.Modules
         {
         }
 
-        public virtual IHtmlContent RenderModule(IHtmlHelper helper)
-        {
-            throw new System.NotImplementedException();
-        }
+ 
     }
 }

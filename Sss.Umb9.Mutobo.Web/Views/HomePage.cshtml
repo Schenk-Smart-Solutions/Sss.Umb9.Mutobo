@@ -5,7 +5,7 @@
 	Layout = "Master.cshtml";
 }
 
-<o-body>
+<base-o-body>
     <h1>@Model.PageTitle</h1>
     @if (Model.Modules != null && Model.Modules.Any())
     {
@@ -14,4 +14,4 @@
             @await module.RenderModule(this.Html)
         }
     }
-</o-body>
+</base-o-body>
