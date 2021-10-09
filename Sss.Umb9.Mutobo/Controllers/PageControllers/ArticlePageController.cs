@@ -41,11 +41,6 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 
 
 
-            model.EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
-                ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages), width: 500, height: 500)  :
-                null;
-
-
             return base.Index();
         }
     }

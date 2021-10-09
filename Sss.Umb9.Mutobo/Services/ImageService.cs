@@ -27,8 +27,9 @@ namespace Sss.Umb9.Mutobo.Services
 
         public ImageService(
                 IMediaService mediaService,
-                ILogger<ImageService> logger)
-                    : base(logger)
+                ILogger<ImageService> logger,
+                IUmbracoContextAccessor contextAccessor)
+                    : base(logger, contextAccessor)
         {
             _mediaService = mediaService;
         }

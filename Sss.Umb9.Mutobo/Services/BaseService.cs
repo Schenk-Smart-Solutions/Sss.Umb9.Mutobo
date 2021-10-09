@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Scoping;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common;
@@ -18,13 +19,23 @@ namespace Sss.Umb9.Mutobo.Services
     {
  
         protected readonly ILogger Logger;
+        private readonly IUmbracoContextAccessor _umbracoContextAccessor;
+        protected readonly IUmbracoContext Context;
+        protected readonly IPublishedContent CurrentPage;
 
 
-
-        protected BaseService(ILogger logger)
+        protected BaseService(ILogger logger, IUmbracoContextAccessor contextAccessor)
         {
             Logger = logger;
-            //Context = context;
+            _umbracoContextAccessor = contextAccessor;
+
+            if (_umbracoContextAccessor.TryGetUmbracoContext(out Context)) 
+            {
+                CurrentPage = Context.PublishedRequest.PublishedContent;
+            }
+
+
+
      
         }
 

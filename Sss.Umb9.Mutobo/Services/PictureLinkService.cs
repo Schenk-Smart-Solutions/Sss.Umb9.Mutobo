@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
 
 namespace Sss.Umb9.Mutobo.Services
@@ -17,8 +18,8 @@ namespace Sss.Umb9.Mutobo.Services
         private readonly IImageService _imageService;
 
 
-        public PictureLinkService(IImageService imageService, ILogger<PictureLinkService> logger)
-            : base(logger)
+        public PictureLinkService(IImageService imageService, ILogger<PictureLinkService> logger, IUmbracoContextAccessor contextAccessor)
+            : base(logger, contextAccessor)
         {
             _imageService = imageService;
         }

@@ -18,15 +18,15 @@ namespace Sss.Umb9.Mutobo.Services
 {
     public class NavigationService : BaseService, INavigationService
     {
-        private readonly IUmbracoContextAccessor _context;
+      
 
 
 
 
-        public NavigationService(ILogger<NavigationService> logger, IUmbracoContextAccessor context)
-            : base(logger)
+        public NavigationService(ILogger<NavigationService> logger, IUmbracoContextAccessor contextAccessor)
+            : base(logger, contextAccessor)
         {
-            _context = context;
+           
         }
 
    
@@ -105,14 +105,8 @@ namespace Sss.Umb9.Mutobo.Services
 
         private IPublishedContent DetermineHomeNode()
         {
-            IUmbracoContext context = null;
-            IPublishedContent node = null;
-
-            if (_context.TryGetUmbracoContext(out context))
-            {
-                node = context.PublishedRequest.PublishedContent;    
-            
-            }
+   
+            IPublishedContent node = Context.PublishedRequest.PublishedContent;
 
             while (node.Parent != null)
             {

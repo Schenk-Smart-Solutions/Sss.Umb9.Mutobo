@@ -35,12 +35,6 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
         public override IActionResult Index()
         {
             var model = new ContentPage(CurrentPage);
-
-            model.EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
-            ImageService.GetImages(
-             CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
-             width: 500,
-             height: 500) : null;
             model.Modules = ContententService.GetContent(CurrentPage, DocumentTypes.ContentPage.Fields.Modules);
             return base.Index();
         }

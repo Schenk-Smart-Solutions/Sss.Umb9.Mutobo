@@ -23,7 +23,7 @@ namespace Sss.Umb9.Mutobo.Services
         private readonly ILocalizationService _localizationService;
         private readonly IImageService _imageService;
         private readonly IPictureLinkService _pictureLinkService;
-        private readonly IUmbracoContextAccessor _contextAccessor;
+
 
 
         public PageLayoutService(
@@ -32,13 +32,13 @@ namespace Sss.Umb9.Mutobo.Services
             IImageService imageService,
             IPictureLinkService pictureLinkService,
             ILogger<PageLayoutService> logger,
-            IUmbracoContextAccessor contextAccessor) : base(logger)
+            IUmbracoContextAccessor contextAccessor) : base(logger, contextAccessor)
         {
             _navigationService = navigationService;
             _localizationService = localizationService;
             _imageService = imageService;
             _pictureLinkService = pictureLinkService;
-            _contextAccessor = contextAccessor;
+
         }
 
         /// <summary>
@@ -114,17 +114,16 @@ namespace Sss.Umb9.Mutobo.Services
     : new List<IPublishedElement>();
                 var linkBlocks = new List<FooterNavBlock>();
 
-                IUmbracoContext ctx = null;
 
 
-                if (_contextAccessor.TryGetUmbracoContext(out ctx))
+
+
+                foreach (var node in nodes)
                 {
-                    foreach (var node in nodes)
-                    {
-                        var contentNode = ctx.Content.GetById(node.Value<IPublishedContent>(DocumentTypes.FooterNavBlock.StartNode).Id);
-                        linkBlocks.Add(GetFooterLinkBlock(contentNode));
-                    }
+                    var contentNode = Context.Content.GetById(node.Value<IPublishedContent>(DocumentTypes.FooterNavBlock.StartNode).Id);
+                    linkBlocks.Add(GetFooterLinkBlock(contentNode));
                 }
+
 
 
                 var footerLinks = footerConfig.Value<IEnumerable<Link>>(DocumentTypes.FooterConfiguration.Fields.Links) ??

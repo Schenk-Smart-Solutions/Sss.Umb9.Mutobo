@@ -19,8 +19,9 @@ namespace Sss.Umb9.Mutobo.Services
 
         public ConfigurationService(
             IConfiguration configuration,
-            ILogger<ConfigurationService> logger) 
-            : base(logger)
+            ILogger<ConfigurationService> logger,
+            IUmbracoContextAccessor contextAccessor) 
+            : base(logger, contextAccessor)
         {
             _configuration = configuration;   
         }

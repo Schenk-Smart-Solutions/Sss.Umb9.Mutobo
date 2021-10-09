@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
 
 namespace Sss.Umb9.Mutobo.Services
@@ -26,11 +27,12 @@ namespace Sss.Umb9.Mutobo.Services
 
 
         public MutoboContentService(
-            ILogger<MutoboContentService> logger, 
+            ILogger<MutoboContentService> logger,
             IImageService imageService,
             ISliderService sliderService,
-            ICardService cardService) 
-                : base(logger)
+            ICardService cardService,
+            IUmbracoContextAccessor contextAccessor)
+                : base(logger, contextAccessor)
         {
             SliderService = sliderService;
             _cardService = cardService;
@@ -64,7 +66,7 @@ namespace Sss.Umb9.Mutobo.Services
                             break;
                         case DocumentTypes.RichTextComponent.Alias:
                             result.Add(new RichtextComponent(element.value, null)
-                            { 
+                            {
                                 SortOrder = element.index
                             });
                             break;
@@ -72,10 +74,10 @@ namespace Sss.Umb9.Mutobo.Services
                             result.Add(new Flyer(element.value, null)
                             {
                                 SortOrder = element.index,
-                                Image =  element.value.HasValue(DocumentTypes.Flyer.Fields.FlyerImage) ? ImageService
+                                Image = element.value.HasValue(DocumentTypes.Flyer.Fields.FlyerImage) ? ImageService
                                 .GetImage(element.value.Value<IPublishedContent>(DocumentTypes.Flyer.Fields.FlyerImage),
-                                width: 900, 
-                                imageCropMode: ImageCropMode.Max) 
+                                width: 900,
+                                imageCropMode: ImageCropMode.Max)
                                 : null,
                                 TeaserText = element.value.Value<string>(DocumentTypes.Flyer.Fields.FlyerTeaserText),
                                 Link = element.value.Value<Link>(DocumentTypes.Flyer.Fields.Link)
@@ -147,14 +149,14 @@ namespace Sss.Umb9.Mutobo.Services
                                 SortOrder = element.index
                             });
                             break;
-                        //case DocumentTypes.CardContainer.Alias:
-                        //    result.Add(new CardContainer(element.value, null)
-                        //    {
-                        //        Cards = _cardService.GetCards(element.value, Constants.DocumentTypes.CardContainer.Fields.Cards),
-                        //        // set the sort order of the module to ensure the module order
-                        //        SortOrder = element.index
-                        //    });
-                        //    break;
+                            //case DocumentTypes.CardContainer.Alias:
+                            //    result.Add(new CardContainer(element.value, null)
+                            //    {
+                            //        Cards = _cardService.GetCards(element.value, Constants.DocumentTypes.CardContainer.Fields.Cards),
+                            //        // set the sort order of the module to ensure the module order
+                            //        SortOrder = element.index
+                            //    });
+                            //    break;
                     }
                 }
 
@@ -171,13 +173,27 @@ namespace Sss.Umb9.Mutobo.Services
                 case DocumentTypes.BasePage.Alias:
                 default:
                     return new BasePage(content);
-                    
+
                 case DocumentTypes.ArticlePage.Alias:
-                    return new ArticlePage(content);
-                    
+
+
+                    return new ArticlePage(content)
+                    {
+                        EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
+                        ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
+                        width: 500,
+                        height: 500) : null,
+                    };
+
                 case DocumentTypes.ContentPage.Alias:
-                    return new ContentPage(content);
-                
+                    return new ContentPage(content)
+                    {
+                        EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
+                        ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
+                        width: 500,
+                        height: 500) : null,
+                    };
+
                 case DocumentTypes.HomePage.Alias:
                     return new HomePage(content);
             }

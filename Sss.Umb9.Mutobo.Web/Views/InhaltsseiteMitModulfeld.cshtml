@@ -8,7 +8,7 @@
 
 
 <o-body>
-    @Html.Partial("~/Views/Partials/ArticleContent.cshtml", Model)
+    @await Html.PartialAsync("~/Views/Partials/ArticleContent.cshtml", Model)
 
     @if (Model.Modules != null && Model.Modules.Any())
     {
