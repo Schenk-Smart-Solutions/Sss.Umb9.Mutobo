@@ -4,43 +4,40 @@
 @using Sss.Umb9.Mutobo.Modules
 @model Sss.Umb9.Mutobo.PageModels.ArticlePage
 
-    <div>
-        @if (!string.IsNullOrEmpty(Model.PageTitle))
+<div>
+    @if (!string.IsNullOrEmpty(Model.PageTitle))
+    {
+<h2>@Model.PageTitle.ToUpper()</h2>}
+    @if (Model.EmotionImages != null && Model.EmotionImages.Any())
+    {
+        if (Model.EmotionImages.Count() < 2)
         {
-            <h2>@Model.PageTitle.ToUpper()</h2>
-        }
-        @if (Model.EmotionImages != null && Model.EmotionImages.Any())
-        {
-            if (Model.EmotionImages.Count() < 2)
-            {
-                var image = Model.EmotionImages.FirstOrDefault();
+            var image = Model.EmotionImages.FirstOrDefault();
 
-                if (image != null)
-                {
-                    @image.RenderWcPictureTag() 
+            if (image != null)
+            {
+@image.RenderWcPictureTag() }
                 }
-            }
-            else
-            {
+                else
+                {
 
-                @Html.PartialAsync("~/Views/Partials/Slider.cshtml", new EmptySliderComponent()
+<partial name="~/Views/Partials/Slider.cshtml" model="new EmptySliderComponent()
                 {
                     Slides = Model.EmotionImages,
                     GalleryType = EGalleryType.Boxed,
                     Width = 800,
                     Height = 450,
-                });
+                }" />
+                
+                }
             }
-        }       
-        @if (!Model.HideAbstract && !string.IsNullOrEmpty(Model.Abstract))
-        {
-            <p>@Model.Abstract</p>
-        }
-        @if (!string.IsNullOrEmpty(Model.MainContent))
-        {
-            <div>
-                 @Html.Raw(Model.MainContent)
-            </div>
-        }
+    @if (!Model.HideAbstract && !string.IsNullOrEmpty(Model.Abstract))
+    {
+<p>@Model.Abstract</p>}
+    @if (!string.IsNullOrEmpty(Model.MainContent))
+    {
+<div>
+    @Html.Raw(Model.MainContent)
+</div>}
 </div>
 
