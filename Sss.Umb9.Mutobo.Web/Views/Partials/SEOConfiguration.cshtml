@@ -1,0 +1,27 @@
+﻿@using Sss.Umb9.Mutobo.Interfaces
+
+@inject ISeoService SeoService
+
+ @{ 
+     var seoConfig = SeoService.GetSeoConfiguration();
+ }
+
+
+<meta name="title" content="@seoConfig.MetaTitle" />
+<meta name="description" content="@seoConfig.MetaDescription">
+<meta property="og:description" content="@seoConfig.MetaDescription" />
+<meta name="keywords" content="@seoConfig.MetaKeywords">
+
+
+@if (!string.IsNullOrEmpty(seoConfig.ThumbnailUrl))
+{
+    <PageMap>
+        <DataObject type="thumbnail">
+            <Attribute name="src" value="@seoConfig.ThumbnailUrl" />
+            <Attribute name="width" value="@seoConfig.ThumbNailWidth" />
+            <Attribute name="height" value="@seoConfig.ThumbNailHeight" />
+        </DataObject>
+    </PageMap>
+}
+
+

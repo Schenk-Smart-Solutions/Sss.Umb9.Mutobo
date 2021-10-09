@@ -39,6 +39,7 @@ namespace Sss.Umb9.Mutobo.Composer
             builder.Services.AddSingleton<IImageService, ImageService>();
             builder.Services.AddSingleton<IConfigurationService, ConfigurationService>();
             builder.Services.AddScoped<IMutoboContentService, MutoboContentService>();
+            builder.Services.AddScoped<ISeoService, SeoService>();
             builder.Services.AddSingleton<ICardService, CardService>();
             builder.Services.AddSingleton<ISliderService, SliderService>();
             builder.Services.AddSingleton<IFlyerservice, FlyerService>();
