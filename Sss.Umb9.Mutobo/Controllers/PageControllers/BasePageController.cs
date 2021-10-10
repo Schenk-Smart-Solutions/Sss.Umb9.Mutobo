@@ -55,24 +55,10 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
             }
 
             var model = ContententService.GetPageModel(CurrentPage);
-
-
-
-            try
-            {
-                model.HeaderConfiguration = PageLayoutService.GetHeaderConfiguration(CurrentPage);
-                model.FooterConfiguration = PageLayoutService.GetFooterConfiguration(CurrentPage);
-                model.FooterConfiguration.HomePageLogo = model.HeaderConfiguration.Logo;
-
-
-            }
-            catch (AppSettingsException e)
-            {
-
-                throw e;
-            }
-
-
+  
+            model.HeaderConfiguration = PageLayoutService.GetHeaderConfiguration(CurrentPage);
+            model.FooterConfiguration = PageLayoutService.GetFooterConfiguration(CurrentPage);
+            //model.FooterConfiguration.HomePageLogo = model.HeaderConfiguration.Logo;
             return CurrentTemplate<BasePage>(model);
         }
 

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+
+@model IEnumerable<Sss.Umb9.Mutobo.PageModels.BasePage>
+ 
+
+
+
+@{Layout = null;  }
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    @foreach (var node in Model)
+    {
+        if (!node.ExcludeFromXMLSitemap)
+        {
+            <url>
+                <loc>@node.Content.Url(mode: UrlMode.Absolute).Replace("http", "https")</loc>
+                <lastmod>@($"{node.Content.UpdateDate:s}+00:00")</lastmod>
+                <changefreq>@(!string.IsNullOrEmpty(node.SearchEngineFrequency) ? node.SearchEngineFrequency : "weekly")</changefreq>
+                <priority>@node.SearchEngineRelativePriority</priority>
+            </url>
+        }
+    }
+</urlset>

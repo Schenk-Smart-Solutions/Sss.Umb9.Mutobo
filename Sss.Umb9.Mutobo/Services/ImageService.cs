@@ -23,7 +23,7 @@ namespace Sss.Umb9.Mutobo.Services
     public class ImageService : BaseService, IImageService
     {
         protected readonly IMediaService _mediaService;
-        private readonly IUrlHelper _urlHelper;
+  
 
         public ImageService(
                 IMediaService mediaService,
