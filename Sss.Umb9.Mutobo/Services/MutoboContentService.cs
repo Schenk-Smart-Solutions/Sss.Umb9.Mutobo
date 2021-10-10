@@ -139,11 +139,13 @@ namespace Sss.Umb9.Mutobo.Services
                             });
                             break;
                         case DocumentTypes.DoubleSliderComponent.Alias:
-                            result.Add(new DoubleSliderComponent(element.value, null)
+                            var dblSliderComponent =  new DoubleSliderComponent(element.value, null)
                             {
-                                Slides = SliderService.GetDoubleSlides(element.value, DocumentTypes.DoubleSliderComponent.Fields.Slides, 800, 450) as IEnumerable<TextImageSlide>,
+                                
                                 SortOrder = element.index
-                            });
+                            };
+                            dblSliderComponent.Slides = SliderService.GetDoubleSlides(element.value, DocumentTypes.DoubleSliderComponent.Fields.Slides, width: dblSliderComponent.Width, height: dblSliderComponent.Height) as IEnumerable<TextImageSlide>;
+                            result.Add(dblSliderComponent);
                             break;
                         case DocumentTypes.Quote.Alias:
                             result.Add(new Quote(element.value, null)

@@ -7,7 +7,8 @@
 <div>
     @if (!string.IsNullOrEmpty(Model.PageTitle))
     {
-<h2>@Model.PageTitle.ToUpper()</h2>}
+<h2>@Model.PageTitle.ToUpper()</h2>
+    <br />}
     @if (Model.EmotionImages != null && Model.EmotionImages.Any())
     {
         if (Model.EmotionImages.Count() < 2)

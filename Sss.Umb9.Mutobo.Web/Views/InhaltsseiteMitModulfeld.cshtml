@@ -9,12 +9,18 @@
 
 <base-o-body>
     @await Html.PartialAsync("~/Views/Partials/ArticleContent.cshtml", Model)
-
+    <div class="spacer"></div>
     @if (Model.Modules != null && Model.Modules.Any())
     {
         foreach (var module in Model.Modules)
         {
-            @module.RenderModule(this.Html)
+            
+            @await module.RenderModule(this.Html)
+
+            if (module.SpacerAfterModule)
+            { 
+                <div class="spacer"></div>
+            }
         }
     }
 </base-o-body>

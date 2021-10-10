@@ -42,22 +42,22 @@ namespace Sss.Umb9.Mutobo.Modules
             switch (RenderAs)
             {
                 case EHeadingRenderType.Heading1:
-                    bld.Append($"<h1 {anchor}>{Text.ToUpper()}</h1>");
+                    bld.Append($"<h1 style=\"width:100%\" {anchor}>{Text.ToUpper()}</h1>");
                     break;
                 case EHeadingRenderType.Heading2:
-                    bld.Append($"<h2 {anchor}>{Text.ToUpper()}</h2>");
+                    bld.Append($"<h2 style=\"width:100%\" {anchor}>{Text.ToUpper()}</h2>");
                     break;
                 case EHeadingRenderType.Heading3:
-                    bld.Append($"<h3 {anchor}>{Text.ToUpper()}</h3>");
+                    bld.Append($"<h3 style=\"width:100%\" {anchor}>{Text.ToUpper()}</h3>");
                     break;
                 case EHeadingRenderType.Heading4:
-                    bld.Append($"<h4 {anchor}>{Text.ToUpper()}</h4>");
+                    bld.Append($"<h4 style=\"width:100%\" {anchor}>{Text.ToUpper()}</h4>");
                     break;
                 case EHeadingRenderType.Heading5:
-                    bld.Append($"<h5 {anchor}>{Text.ToUpper()}</h5>");
+                    bld.Append($"<h5 style=\"width:100%\" {anchor}>{Text.ToUpper()}</h5>");
                     break;
                 case EHeadingRenderType.Heading6:
-                    bld.Append($"<h6 {anchor}>{Text.ToUpper()}</h6>");
+                    bld.Append($"<h6 style=\"width:100%\" {anchor}>{Text.ToUpper()}</h6>");
                     break;
             }
 

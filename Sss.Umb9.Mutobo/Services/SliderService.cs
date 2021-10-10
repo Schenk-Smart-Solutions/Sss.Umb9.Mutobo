@@ -80,7 +80,7 @@ namespace Sss.Umb9.Mutobo.Services
                     result.Add(new TextImageSlide(slideNode, null)
                     {
                         Image = slideNode.HasValue(DocumentTypes.Picture.Fields.Image) ? _imageService.GetImage(
-                           slideNode.Value<IPublishedContent>(DocumentTypes.TextImageSlide.Fields.Image), width, height, isGoldenRatio: isGoldenRatio) : null
+                           slideNode.Value<IPublishedContent>(DocumentTypes.TextImageSlide.Fields.Image), width: width, height: height, isGoldenRatio: isGoldenRatio) : null
                     });
 
 

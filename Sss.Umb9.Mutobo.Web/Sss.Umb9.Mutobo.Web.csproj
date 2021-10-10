@@ -40,6 +40,18 @@
 
 
     <ItemGroup>
+      <None Remove="favicon.ico" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <Content Include="favicon.ico" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
       <ProjectReference Include="..\Sss.Umb9.Mutobo\Sss.Umb9.Mutobo.csproj" />
     </ItemGroup>
 
@@ -47,6 +59,7 @@
 
     <ItemGroup>
       <Folder Include="uSync\v9\ContentTypes\" />
+      <Folder Include="uSync\v9\Content\" />
       <Folder Include="wwwroot\Smidge\" />
     </ItemGroup>
 

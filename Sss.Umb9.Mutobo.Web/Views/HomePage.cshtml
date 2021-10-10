@@ -12,6 +12,11 @@
         foreach (var module in Model.Modules)
         {
             @await module.RenderModule(this.Html)
+            if (module.SpacerAfterModule)
+            {
+                <div class="spacer"></div>
+            }
         }
+
     }
 </base-o-body>
