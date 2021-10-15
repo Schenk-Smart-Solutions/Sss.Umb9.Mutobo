@@ -9,8 +9,8 @@
 
     <ItemGroup>
         <PackageReference Include="Shorthand.ImageSharp.WebP" Version="2.2.1" />
-        <PackageReference Include="Umbraco.Cms" Version="9.0.0" />
-        <PackageReference Include="uSync" Version="9.0.0.1" />
+        <PackageReference Include="Umbraco.Cms" Version="9.0.1" />
+        <PackageReference Include="uSync" Version="9.0.2" />
         <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.10.0" />
     </ItemGroup>
 
@@ -19,8 +19,10 @@
     <ItemGroup>
         <Content Include="App_Plugins/**" CopyToOutputDirectory="Always" />
         <Content Include="umbraco/**" CopyToOutputDirectory="Always" />
+        <Compile Remove="App_Plugins\**" />
         <Compile Remove="wwwroot\media\**" />
         <Compile Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
+        <Content Remove="App_Plugins\**" />
         <Content Remove="umbraco/Data/**" />
         <Content Remove="umbraco/Logs/**" />
         <Content Remove="umbraco/mediacache/**" />
@@ -33,8 +35,10 @@
 
 
     <ItemGroup>
+      <EmbeddedResource Remove="App_Plugins\**" />
       <EmbeddedResource Remove="wwwroot\media\**" />
       <EmbeddedResource Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
+      <None Remove="App_Plugins\**" />
       <None Remove="wwwroot\media\**" />
       <None Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
     </ItemGroup>
@@ -160,6 +164,7 @@
       uSync;
       $(CopyAllFilesToSingleFolderForMSDeployDependsOn);
     </CopyAllFilesToSingleFolderForMSDeployDependsOn>
+    <UserSecretsId>7f902e03-0862-40f6-9423-625384da0120</UserSecretsId>
   </PropertyGroup>
   <Target Name="CustomCollectFiles">
     <ItemGroup>

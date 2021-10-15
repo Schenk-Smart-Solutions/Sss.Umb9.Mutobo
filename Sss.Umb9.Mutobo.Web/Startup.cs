@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Extensions;
+using WebMarkupMin.AspNet.Common.UrlMatchers;
 using WebMarkupMin.AspNetCore5;
 
 namespace Sss.Umb9.Mutobo.Web
@@ -50,17 +52,31 @@ namespace Sss.Umb9.Mutobo.Web
 
 
             services.AddWebMarkupMin(
-        options =>
+
+
+                
+            options =>
         {
+
+
             options.AllowMinificationInDevelopmentEnvironment = true;
             options.AllowCompressionInDevelopmentEnvironment = true;
+            
         })
         .AddHtmlMinification(
             options =>
             {
-                options.MinificationSettings.RemoveRedundantAttributes = true;
-                options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
-                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+                options.ExcludedPages = new List<IUrlMatcher>
+                    {
+ 
+                        new WildcardUrlMatcher("/umbraco/**")
+                    };
+                options.MinificationSettings.RemoveRedundantAttributes = false;
+                options.MinificationSettings.RemoveHttpProtocolFromAttributes = false;
+                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = false;
+              
+
+
             })
         .AddHttpCompression();
 

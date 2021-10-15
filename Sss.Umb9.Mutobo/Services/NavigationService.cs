@@ -108,6 +108,8 @@ namespace Sss.Umb9.Mutobo.Services
    
             IPublishedContent node = Context.PublishedRequest.PublishedContent;
 
+            
+
             while (node.Parent != null)
             {
                 node = node.Parent;
