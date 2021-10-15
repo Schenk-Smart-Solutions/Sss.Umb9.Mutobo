@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Extensions;
+using WebMarkupMin.AspNetCore5;
 
 namespace Sss.Umb9.Mutobo.Web
 {
@@ -47,6 +48,22 @@ namespace Sss.Umb9.Mutobo.Web
                 .Build();
 #pragma warning restore IDE0022 // Use expression body for methods
 
+
+            services.AddWebMarkupMin(
+        options =>
+        {
+            options.AllowMinificationInDevelopmentEnvironment = true;
+            options.AllowCompressionInDevelopmentEnvironment = true;
+        })
+        .AddHtmlMinification(
+            options =>
+            {
+                options.MinificationSettings.RemoveRedundantAttributes = true;
+                options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+            })
+        .AddHttpCompression();
+
         }
 
         /// <summary>
@@ -60,6 +77,8 @@ namespace Sss.Umb9.Mutobo.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseWebMarkupMin();
 
             app.UseUmbraco()
                 .WithMiddleware(u =>

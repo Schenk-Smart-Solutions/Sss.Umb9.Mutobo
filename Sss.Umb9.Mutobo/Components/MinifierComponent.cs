@@ -17,16 +17,16 @@ namespace Sss.Umb9.Mutobo.Components
         {
             _runtimeMinifier.CreateJsBundle("inline-js-bundle",
                 BundlingOptions.OptimizedAndComposite,
-                new[] { "~/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" });
+                new[] { "~/web-components-cms-template-base/wc-config.js" });
 
             _runtimeMinifier.CreateCssBundle("inline-css-bundle",
-                BundlingOptions.NotOptimizedAndComposite,
+                BundlingOptions.OptimizedAndComposite,
                 new[] { "~/web-components-cms-template-base/src/css/variables.css", "~/web-components-cms-template-base/src/css/misc.css", "~/web-components-cms-template-base/src/css/fonts.css" });
         }
 
         public void Terminate()
         {
-            throw new NotImplementedException();
+          
         }
     }
 }

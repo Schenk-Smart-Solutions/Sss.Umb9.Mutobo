@@ -10,6 +10,7 @@
     <ItemGroup>
         <PackageReference Include="Umbraco.Cms" Version="9.0.0" />
         <PackageReference Include="uSync" Version="9.0.0.1" />
+        <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.10.0" />
     </ItemGroup>
 
 

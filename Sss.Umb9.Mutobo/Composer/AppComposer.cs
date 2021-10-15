@@ -48,6 +48,8 @@ namespace Sss.Umb9.Mutobo.Composer
             builder.Services.AddSingleton<IPageLayoutService, PageLayoutService>();
             builder.Services.AddSingleton<IPictureLinkService, PictureLinkService>();
 
+
+
         }
     }
 }

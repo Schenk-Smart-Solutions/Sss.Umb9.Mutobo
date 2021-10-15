@@ -1,6 +1,8 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @using System.Threading;
 @using Sss.Umb9.Mutobo.PoCo
+@using Umbraco.Cms.Core.WebAssets
+@inject IRuntimeMinifier runtimeMinifier
 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Sss.Umb9.Mutobo.PageModels.BasePage>
 @* the fun starts here *@
@@ -12,9 +14,9 @@
 <head>
     <meta charset=UTF-8>
     <meta name=viewport content="width=device-width, initial-scale=1.0">
-    <link href="~/web-components-cms-template-base/src/css/variables.css" rel="stylesheet" />
+    @*<link href="~/web-components-cms-template-base/src/css/variables.css" rel="stylesheet" />
     <link href="~/web-components-cms-template-base/src/css/misc.css" rel="stylesheet" />
-    <link href="~/web-components-cms-template-base/src/css/fonts.css" rel="stylesheet" />
+    <link href="~/web-components-cms-template-base/src/css/fonts.css" rel="stylesheet" />*@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>@Model.PageTitle</title>
     @await Html.PartialAsync("~/Views/Partials/SEOConfiguration.cshtml")
@@ -23,6 +25,7 @@
     {
         @await Html.PartialAsync("~/Views/Partials/GoogleAnalytics.cshtml", new GoogleAnalyticsModel() { Key = Model.GoogleAnalyticsKey })
     }
+    @Html.Raw(await runtimeMinifier.RenderCssHereAsync("inline-css-bundle"))
 </head>
 <body>
     <p-general>
@@ -30,7 +33,7 @@
         @RenderBody()
         @await Html.PartialAsync("~/Views/Partials/Footer.cshtml", Model.FooterConfiguration as Sss.Umb9.Mutobo.Configuration.FooterConfiguration)
     </p-general>
-    <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>
+   @* <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>*@
 
     <m-cookie-banner storage="localStorage" namespace="cookie-banner-">
         <style>
@@ -47,6 +50,7 @@
         </section>
 
     </m-cookie-banner>
+    @Html.Raw(await runtimeMinifier.RenderJsHereAsync("inline-js-bundle"))
 </body>
 
 </html>
