@@ -40,6 +40,12 @@
 
 
     <ItemGroup>
+      <Content Remove="appsettings.Development.json" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
       <None Remove="favicon.ico" />
     </ItemGroup>
 

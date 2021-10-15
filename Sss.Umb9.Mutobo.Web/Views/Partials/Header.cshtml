@@ -17,8 +17,8 @@
     </style>
 
 
-    <div style="display:flex; flex-direction: row; align-items:center; width 30%;">
-        <a-logo namespace="logo-" src="@Model.Logo.DefaultSource.Src" href="@Model.LogoUrl">
+    <div style="display:flex; flex-direction: row; align-items:center;">
+        <a-logo namespace="logo-" src="@Model.Logo.DefaultSource.Src" href="@Model.LogoUrl.Url">
             <style>
                 :host {
                     --logo-height: 170px;
@@ -27,7 +27,7 @@
         </a-logo>
 
 
-        <span style="font-size: 1.2em; font-weight: bold; margin: 0 0 1em 0;">SMART AND SIMPLE AS NATURE</span>
+        <span style="font-size: min(1em, 5vw); font-weight: bold; margin: 0.5em 0 0.5em 0;">SMART AND SIMPLE AS NATURE</span>
     </div>
 
 
@@ -41,7 +41,7 @@
             :host {
                 --navigation-color: var(--color);
                 --navigation-a-link-color-no-scroll: var(--color);
-                width: 70%
+                width:100%;
             }
         </style>
         <ul>
