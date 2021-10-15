@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Shorthand.ImageSharp.WebP" Version="2.2.1" />
         <PackageReference Include="Umbraco.Cms" Version="9.0.0" />
         <PackageReference Include="uSync" Version="9.0.0.1" />
         <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.10.0" />
@@ -19,11 +20,13 @@
         <Content Include="App_Plugins/**" CopyToOutputDirectory="Always" />
         <Content Include="umbraco/**" CopyToOutputDirectory="Always" />
         <Compile Remove="wwwroot\media\**" />
+        <Compile Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
         <Content Remove="umbraco/Data/**" />
         <Content Remove="umbraco/Logs/**" />
         <Content Remove="umbraco/mediacache/**" />
         <Content Remove="umbraco/models/**" />
         <Content Remove="wwwroot\media\**" />
+        <Content Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
         <Compile Include="umbraco/models/**" Exclude="**/*.flag" />
     </ItemGroup>
 
@@ -31,7 +34,9 @@
 
     <ItemGroup>
       <EmbeddedResource Remove="wwwroot\media\**" />
+      <EmbeddedResource Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
       <None Remove="wwwroot\media\**" />
+      <None Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
     </ItemGroup>
 
 
@@ -77,20 +82,6 @@
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\organisms\Style.js" />
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\organisms\Wrapper.js" />
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\.gitignore" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\engine_scripts\puppet\clickAndHoverHelper.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\engine_scripts\puppet\ignoreCSP.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\engine_scripts\puppet\interceptImages.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\engine_scripts\puppet\loadCookies.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\engine_scripts\puppet\onBefore.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\engine_scripts\puppet\onReady.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\engine_scripts\puppet\overrideCSS.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\html_report\assets\fonts\lato-bold-webfont.woff2" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\html_report\assets\fonts\lato-regular-webfont.woff2" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\html_report\config.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\html_report\diff.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\html_report\diverged.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\html_report\divergedWorker.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\html_report\index_bundle.js" />
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\LICENSE" />
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\README.md" />
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Arrow.js" />
