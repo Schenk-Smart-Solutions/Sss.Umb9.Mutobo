@@ -486,5 +486,5 @@ $RECYCLE.BIN/
 # Nuget package Umbraco.Cms.StaticAssets will copy them in during dotnet build
 **/wwwroot/umbraco/
 **/wwwroot/media/
-**/wwwroot/media/web-components-cms-template-base/
+**/wwwroot/web-components-cms-template-base/
 
