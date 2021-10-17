@@ -153,14 +153,20 @@ namespace Sss.Umb9.Mutobo.Services
                                 SortOrder = element.index
                             });
                             break;
-                            //case DocumentTypes.CardContainer.Alias:
-                            //    result.Add(new CardContainer(element.value, null)
-                            //    {
-                            //        Cards = _cardService.GetCards(element.value, Constants.DocumentTypes.CardContainer.Fields.Cards),
-                            //        // set the sort order of the module to ensure the module order
-                            //        SortOrder = element.index
-                            //    });
-                            //    break;
+                        //case DocumentTypes.CardContainer.Alias:
+                        //    result.Add(new CardContainer(element.value, null)
+                        //    {
+                        //        Cards = _cardService.GetCards(element.value, Constants.DocumentTypes.CardContainer.Fields.Cards),
+                        //        // set the sort order of the module to ensure the module order
+                        //        SortOrder = element.index
+                        //    });
+                        //    break;
+                        case DocumentTypes.ContactForm.Alias:
+                            result.Add(new ContactForm(element.value, null)
+                            {
+                                SortOrder = element.index
+                            });
+                            break;
                     }
                 }
 

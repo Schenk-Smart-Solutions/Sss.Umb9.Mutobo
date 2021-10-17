@@ -407,6 +407,16 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
+        public static class ContactForm
+        {
+            public const string Alias = "contactForm";
+
+            public static class Fields
+            {
+        
+            }
+        }
+
         public static class Interpretors
         {
             public static class Conductor
