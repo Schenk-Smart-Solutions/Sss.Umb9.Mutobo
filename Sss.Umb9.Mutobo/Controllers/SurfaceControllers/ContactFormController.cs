@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sss.Umb9.Mutobo.Interfaces;
 using Sss.Umb9.Mutobo.PoCo;
 using System;
 using System.Collections.Generic;
@@ -17,16 +18,23 @@ namespace Sss.Umb9.Mutobo.Controllers.SurfaceControllers
 {
     public class ContactFormController : SurfaceController
     {
+        private readonly IMailService _mailService;
+
+
+
+
+
         public ContactFormController(
             IUmbracoContextAccessor umbracoContextAccessor, 
             IUmbracoDatabaseFactory databaseFactory, 
             ServiceContext services, 
             AppCaches appCaches, 
             IProfilingLogger profilingLogger, 
-            IPublishedUrlProvider publishedUrlProvider) 
+            IPublishedUrlProvider publishedUrlProvider,
+            IMailService mailService) 
             : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
         {
-
+            _mailService = mailService;
 
         }
 

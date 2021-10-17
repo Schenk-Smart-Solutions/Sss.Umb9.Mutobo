@@ -43,6 +43,7 @@ namespace Sss.Umb9.Mutobo.Composer
             builder.Services.AddScoped<IXmlSitemapService, XmlSitemapService>();
             builder.Services.AddSingleton<ICardService, CardService>();
             builder.Services.AddSingleton<ISliderService, SliderService>();
+            builder.Services.AddSingleton<IMailService, MailService>();
             builder.Services.AddSingleton<IFlyerservice, FlyerService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddSingleton<IPageLayoutService, PageLayoutService>();

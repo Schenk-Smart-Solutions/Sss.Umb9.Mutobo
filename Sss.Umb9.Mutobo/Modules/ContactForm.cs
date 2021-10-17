@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Sss.Umb9.Mutobo.Configuration;
 using Sss.Umb9.Mutobo.Interfaces;
 using Sss.Umb9.Mutobo.PoCo;
 using System;
@@ -15,6 +16,11 @@ namespace Sss.Umb9.Mutobo.Modules
     {
 
         public ContactFormData Data { get; set; }
+
+        public IPublishedContent TargetPage { get; set; }
+
+        public MailConfiguration SenderMailConfig { get; set; }
+        public MailConfiguration ReceiverMailConfig { get; set; }
 
         public ContactForm(IPublishedElement content, IPublishedValueFallback publishedValueFallback) : base(content, publishedValueFallback)
         {

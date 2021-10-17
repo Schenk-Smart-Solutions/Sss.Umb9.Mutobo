@@ -1,98 +1,60 @@
 ﻿@model Sss.Umb9.Mutobo.Modules.ContactForm
 @using Sss.Umb9.Mutobo.Controllers.SurfaceControllers
 
+<base-m-contact-form type="newsletter" namespace="contactform-" namespace-children="" use-html-submit>
 
-<style>
-    div.form-wrapper {
-        display: flex;
-        flex-direction: column;
-        width: 80vh;
-        text-align: center;
-    }
-
-        div.form-wrapper > form > div {
-            margin: 1.5em 0 1.5em 0;
-            flex-direction: column;
+    <style>
+        :host form a-button {
+            justify-content: center;
+            display: flex;
+            height: 70px;
+            width: 30%;
+            padding: 2em;
+          
         }
-</style>
-
-@*<div class="form-wrapper">
-    @using (Html.BeginUmbracoForm<ContactFormController>(nameof(ContactFormController.Submit)))
-    {
 
 
-        <div>
-            <div>
-                @Html.LabelFor(m => m.Data.Test, "Test")
-            </div>
-            <div>
-                @Html.TextBoxFor(m => m.Data.Test)
-            </div>
+        @@media only screen and (max-width: 1000px) {
+            :host form a-input, :host form a-text-area {
+                width: 100% !important;
+            }
+        }
+    </style>
 
-        </div>
-        <div>
-            <div>
-                @Html.LabelFor(m => m.Data.Test, "Test")
-            </div>
-            <div>
-                @Html.TextBoxFor(m => m.Data.Test)
-            </div>
-
-        </div>
-
-
-        <button style="color: var(--background-color)" type="submit" name="Submit" value="Submit">hhhh</button>
-
-
-    }
-</div>*@
-
-
-<base-m-contact-form type="newsletter" use-html-submit>
     @using (Html.BeginUmbracoForm<ContactFormController>(nameof(ContactFormController.Submit), FormMethod.Post))
 
     {
         @Html.LabelFor(m => m.Data.Name, "Name *")
 
-        @Html.TextBoxFor(m => m.Data.Name, new { 
-            placeholder = "Bitte gib deinen Vornamen und deinen Nachnamen ein..", 
-            required = "", 
-            validation_message = "Dies ist ein Pflichtfeld", 
-            @class = "form-control mandatory" 
+        @Html.TextBoxFor(m => m.Data.Name, new
+        {
+            placeholder = "Bitte gib deinen Vornamen und deinen Nachnamen ein..",
+            required = "",
+            validation_message = "Dies ist ein Pflichtfeld",
+            @class = "form-control mandatory"
         })
 
         @Html.LabelFor(m => m.Data.Email, "Email *")
 
-        @Html.TextBoxFor(m => m.Data.Email, new {
-       placeholder = "Bitte gib deine Email-Adresse ein..",
-       required = "",
-       validation_message = "Bitte eine gültige Email-Adresse eingeben",
-       @class = "form-control mandatory",
-       type="email"
-   })
+        @Html.TextBoxFor(m => m.Data.Email, new
+        {
+           placeholder = "Bitte gib deine Email-Adresse ein..",
+           required = "",
+           validation_message = "Bitte eine gültige Email-Adresse eingeben",
+           @class = "form-control mandatory",
+           type = "email"
+        })
 
         @Html.LabelFor(m => m.Data.Comment, "Deine Anfrage *")
 
         @Html.TextAreaFor(m => m.Data.Comment, new
-   {
-     
-       required = "",
-       validation_message = "Dies ist ein Pflichtfeld",
-       @class = "form-control mandatory",
-    
-   })
+        {
+           required = "",
+           validation_message = "Dies ist ein Pflichtfeld",
+           @class = "form-control mandatory",
 
-
-
-
-
-
-
-
-
-        <button style="color: var(--background-color)" type="submit" id="submitButton">Senden</button>
-
-
+         })
+        <button type="submit" id="submitButton">Senden</button>
     }
 </base-m-contact-form>
 

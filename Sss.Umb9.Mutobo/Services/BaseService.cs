@@ -24,6 +24,7 @@ namespace Sss.Umb9.Mutobo.Services
         protected readonly IPublishedContent CurrentPage;
 
 
+
         protected BaseService(ILogger logger, IUmbracoContextAccessor contextAccessor)
         {
             Logger = logger;
