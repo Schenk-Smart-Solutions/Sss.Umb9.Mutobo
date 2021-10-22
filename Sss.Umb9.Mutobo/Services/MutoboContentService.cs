@@ -162,10 +162,15 @@ namespace Sss.Umb9.Mutobo.Services
                         //    });
                         //    break;
                         case DocumentTypes.ContactForm.Alias:
-                            result.Add(new ContactForm(element.value, null)
+                            var model = new ContactForm(element.value, null);
+
+                            model.Data = new ContactFormData
                             {
-                                SortOrder = element.index
-                            });
+                                ReceiverMailConfigId = model.ReceiverMailConfig.Content.Id,
+                                SenderMailConfigId = model.SenderMailConfig.Content.Id
+                            };
+
+                            result.Add(model);
                             break;
                     }
                 }

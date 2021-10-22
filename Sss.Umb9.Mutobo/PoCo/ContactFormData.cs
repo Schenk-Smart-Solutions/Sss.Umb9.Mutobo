@@ -11,7 +11,8 @@ namespace Sss.Umb9.Mutobo.PoCo
         public string Name { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }
-
+        public int SenderMailConfigId { get; set; }
+        public int ReceiverMailConfigId { get; set; }
 
     }
 }

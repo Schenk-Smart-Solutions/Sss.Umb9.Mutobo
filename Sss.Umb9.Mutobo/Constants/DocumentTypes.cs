@@ -413,7 +413,8 @@ namespace Sss.Umb9.Mutobo.Constants
 
             public static class Fields
             {
-        
+                public const string ReceiverMailConfiguration = "receiverMailConfiguration";
+                public const string SenderMailConfiguration = "senderMailConfiguration";
             }
         }
 
