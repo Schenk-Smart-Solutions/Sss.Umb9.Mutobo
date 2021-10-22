@@ -48,9 +48,10 @@ namespace Sss.Umb9.Mutobo.Controllers.SurfaceControllers
                 return CurrentUmbracoPage();
             }
 
-            // Work with form data here
+            _mailService.SendContactMail(data);
+            _mailService.SendConfirmationMail(data);
 
-            return RedirectToCurrentUmbracoPage();
+            return RedirectToUmbracoPage(data.LandingPageId);
         }
     }
 }

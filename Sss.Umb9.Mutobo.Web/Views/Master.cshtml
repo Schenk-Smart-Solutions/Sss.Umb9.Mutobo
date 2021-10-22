@@ -33,8 +33,8 @@
         @RenderBody()
         @await Html.PartialAsync("~/Views/Partials/Footer.cshtml", Model.FooterConfiguration as Sss.Umb9.Mutobo.Configuration.FooterConfiguration)
     </p-general>
-   @* <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>*@
-
+    @* <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>*@
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <m-cookie-banner storage="localStorage" namespace="cookie-banner-">
         <style>
             :host {
@@ -51,6 +51,11 @@
 
     </m-cookie-banner>
     @Html.Raw(await runtimeMinifier.RenderJsHereAsync("inline-js-bundle"))
+    <script>
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+        }
+    </script>
 </body>
 
 </html>

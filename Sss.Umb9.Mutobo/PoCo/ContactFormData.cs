@@ -13,6 +13,7 @@ namespace Sss.Umb9.Mutobo.PoCo
         public string Comment { get; set; }
         public int SenderMailConfigId { get; set; }
         public int ReceiverMailConfigId { get; set; }
+        public Guid LandingPageId { get; set; }
 
     }
 }

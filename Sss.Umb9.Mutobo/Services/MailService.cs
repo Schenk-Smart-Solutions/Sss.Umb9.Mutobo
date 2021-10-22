@@ -5,6 +5,7 @@ using Sss.Umb9.Mutobo.PoCo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,9 @@ namespace Sss.Umb9.Mutobo.Services
             _configurationService = configurationService;
         }
 
-        public void SendConfirmationMail(ContactFormData model, IPublishedContent customer)
+        public void SendConfirmationMail(ContactFormData model)
         {
-            var custConfig = new MailConfiguration(customer);
+            var custConfig = new MailConfiguration(Context.Content.GetById(model.SenderMailConfigId));
 
             var strBuilder = new StringBuilder();
 
@@ -61,9 +62,9 @@ namespace Sss.Umb9.Mutobo.Services
             SendMail(sendMail);
         }
 
-        public void SendContactMail(ContactFormData model, IPublishedContent receiver)
+        public void SendContactMail(ContactFormData model)
         {
-            var recConfig = new MailConfiguration(receiver);
+            var recConfig = new MailConfiguration(Context.Content.GetById(model.ReceiverMailConfigId));
 
             var strBuilder = new StringBuilder();
 
@@ -102,9 +103,15 @@ namespace Sss.Umb9.Mutobo.Services
 
         private void SendMail(MailMessage mail)
         {
-            var mailServer = _configurationService.GetAppSettingValue("Toolbox.MailServer");
-            var smtpClient = new SmtpClient(mailServer);
+            var mailServer = _configurationService.GetAppSettingValue("Umbraco:Cms:Global:Smtp:Host");
+            var port = _configurationService.GetAppSettingIntValue("Umbraco:Cms:Global:Smtp:Port");
+            var userName = _configurationService.GetAppSettingValue("Umbraco:Cms:Global:Smtp:Username");
+            var pwd = _configurationService.GetAppSettingValue("Umbraco:Cms:Global:Smtp:Password");
 
+
+            var smtpClient = port.HasValue ? new SmtpClient(mailServer, port.Value) : new SmtpClient(mailServer);
+            smtpClient.Credentials = new NetworkCredential(userName, pwd);
+            smtpClient.EnableSsl = true;
             smtpClient.Send(mail);
         }
     }

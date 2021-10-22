@@ -415,6 +415,7 @@ namespace Sss.Umb9.Mutobo.Constants
             {
                 public const string ReceiverMailConfiguration = "receiverMailConfiguration";
                 public const string SenderMailConfiguration = "senderMailConfiguration";
+                public const string LandingPage = "landingPage";
             }
         }
 

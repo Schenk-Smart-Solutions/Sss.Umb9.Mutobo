@@ -167,7 +167,8 @@ namespace Sss.Umb9.Mutobo.Services
                             model.Data = new ContactFormData
                             {
                                 ReceiverMailConfigId = model.ReceiverMailConfig.Content.Id,
-                                SenderMailConfigId = model.SenderMailConfig.Content.Id
+                                SenderMailConfigId = model.SenderMailConfig.Content.Id,
+                                LandingPageId = model.LandingPage.Key
                             };
 
                             result.Add(model);

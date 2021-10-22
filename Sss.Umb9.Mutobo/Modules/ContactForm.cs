@@ -26,6 +26,10 @@ namespace Sss.Umb9.Mutobo.Modules
         public MailConfiguration ReceiverMailConfig => this.HasValue(DocumentTypes.ContactForm.Fields.ReceiverMailConfiguration) ?
             new MailConfiguration(this.Value<IPublishedContent>(DocumentTypes.ContactForm.Fields.ReceiverMailConfiguration)) : null;
 
+        public IPublishedContent LandingPage => this.HasValue(DocumentTypes.ContactForm.Fields.LandingPage) ?
+            this.Value<IPublishedContent>(DocumentTypes.ContactForm.Fields.LandingPage) : null;
+
+
         public ContactForm(IPublishedElement content, IPublishedValueFallback publishedValueFallback) : base(content, publishedValueFallback)
         {
         }

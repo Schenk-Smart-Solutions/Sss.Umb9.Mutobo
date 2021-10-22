@@ -10,7 +10,9 @@ namespace Sss.Umb9.Mutobo.Interfaces
 {
     public interface IMailService
     {
-        void SendConfirmationMail(ContactFormData model, IPublishedContent customer);
-        void SendContactMail(ContactFormData model, IPublishedContent receiver);
+        void SendConfirmationMail(ContactFormData model);
+        void SendContactMail(ContactFormData model);
+
+        
     }
 }

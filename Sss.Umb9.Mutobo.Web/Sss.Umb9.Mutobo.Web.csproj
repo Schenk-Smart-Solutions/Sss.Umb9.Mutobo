@@ -72,13 +72,46 @@
 
     <ItemGroup>
       <Folder Include="uSync\v9\ContentTypes\" />
-      <Folder Include="uSync\v9\Content\" />
       <Folder Include="wwwroot\Smidge\" />
     </ItemGroup>
 
 
 
     <ItemGroup>
+      <None Include="uSync\v9\Content\datenschutz.config" />
+      <None Include="uSync\v9\Content\firma.config" />
+      <None Include="uSync\v9\Content\home.config" />
+      <None Include="uSync\v9\Content\impressum.config" />
+      <None Include="uSync\v9\Content\landing-page.config" />
+      <None Include="uSync\v9\Content\mail-konfigurationen.config" />
+      <None Include="uSync\v9\Content\projekte.config" />
+      <None Include="uSync\v9\Content\receiver-mail.config" />
+      <None Include="uSync\v9\Content\sender-mail.config" />
+      <None Include="uSync\v9\Content\sitemap.config" />
+      <None Include="uSync\v9\Content\test.config" />
+      <None Include="uSync\v9\Domains\_.config" />
+      <None Include="uSync\v9\Media\20190422-061559896-ios.config" />
+      <None Include="uSync\v9\Media\20190723-040437268-ios.config" />
+      <None Include="uSync\v9\Media\20190816-041045901-ios.config" />
+      <None Include="uSync\v9\Media\20190912-160451141-ios.config" />
+      <None Include="uSync\v9\Media\20190924-062605274-ios.config" />
+      <None Include="uSync\v9\Media\bild0012.config" />
+      <None Include="uSync\v9\Media\bild0017.config" />
+      <None Include="uSync\v9\Media\bild0024.config" />
+      <None Include="uSync\v9\Media\code.config" />
+      <None Include="uSync\v9\Media\grizzly-221558-1920.config" />
+      <None Include="uSync\v9\Media\gvea01.config" />
+      <None Include="uSync\v9\Media\gvea02.config" />
+      <None Include="uSync\v9\Media\gvea03.config" />
+      <None Include="uSync\v9\Media\log-5182198-1920.config" />
+      <None Include="uSync\v9\Media\musikarin01.config" />
+      <None Include="uSync\v9\Media\musikarin02.config" />
+      <None Include="uSync\v9\Media\musikarin03.config" />
+      <None Include="uSync\v9\Media\paper-3213924-1920.config" />
+      <None Include="uSync\v9\Media\sss-logo.config" />
+      <None Include="uSync\v9\Media\victor-g7df370d58-1920.config" />
+      <None Include="uSync\v9\Media\vogel.config" />
+      <None Include="uSync\v9\Media\website.config" />
       <None Include="wwwroot\web-components-cms-template-base\.gitmodules" />
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\molecules\CookieBanner.js" />
       <None Include="wwwroot\web-components-cms-template-base\src\es\components\molecules\FlipTile.js" />

@@ -55,7 +55,14 @@
          })
         @Html.HiddenFor(m => m.Data.SenderMailConfigId)
         @Html.HiddenFor(m => m.Data.ReceiverMailConfigId)
-        <button type="submit" id="submitButton">Senden</button>
+        @Html.HiddenFor(m => m.Data.LandingPageId)
+        <button 
+                type="submit" 
+                id="submitButton"
+                class="g-recaptcha" 
+        data-sitekey="6Ld1RugcAAAAAPfUk_QFg4qS6Jh8ciri0zEvN46D" 
+        data-callback='onSubmit' 
+        data-action='submit'>Senden</button>
     }
 </base-m-contact-form>
 
