@@ -1,0 +1,30 @@
+﻿@using Sss.Umb9.Mutobo.Constants
+@using Sss.Umb9.Mutobo.Modules
+@model Sss.Umb9.Mutobo.Modules.TwoColumnWrapper
+
+
+<div>
+    <base-o-wrapper>
+        @if (Model.Elements != null && Model.Elements.Any())
+        {
+            foreach (var element in Model.Elements)
+            {
+             
+
+
+                    @switch (element.Alias)
+                    {
+
+                        case DocumentTypes.FlipTeaser.Alias:
+
+                            await Html.RenderPartialAsync("~/Views/Modules/FlipTeaser.cshtml", element as Sss.Umb9.Mutobo.Modules.FlipTeaser);
+
+
+                            break;
+                    }
+           
+            }
+
+        }
+    </base-o-wrapper>
+</div>

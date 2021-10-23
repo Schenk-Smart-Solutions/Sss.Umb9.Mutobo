@@ -537,5 +537,34 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
+
+        public static class TwoColumnWrapper
+        {
+            public const string Alias = "twoColWrapper";
+
+            public static class Fields
+            {
+                public const string Elements = "elements";
+           
+            }
+        }
+
+        public static class FlipTeaser
+        {
+            public const string Alias = "flipTeaser";
+
+            public static class Fields
+            {
+                public const string FrontImage = "frontImage";
+                public const string Title = "title";
+                public const string Text = "text";
+                public const string Link = "link";
+
+
+
+
+            }
+        }
+
     }
 }

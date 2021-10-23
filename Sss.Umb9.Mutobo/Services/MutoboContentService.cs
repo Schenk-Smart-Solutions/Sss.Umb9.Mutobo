@@ -186,6 +186,32 @@ namespace Sss.Umb9.Mutobo.Services
 
                             result.Add(contactFormModel);
                             break;
+                        case DocumentTypes.TwoColumnWrapper.Alias:
+                            var twoColModel = new TwoColumnWrapper(element.value, null);
+
+                            var childElements = element.value.HasValue(DocumentTypes.TwoColumnWrapper.Fields.Elements) ?
+                                element.value.Value<IEnumerable<IPublishedElement>>(DocumentTypes.TwoColumnWrapper.Fields.Elements) 
+                                : null;
+
+                            var childModules = new List<IWrappable>();
+                            foreach (var childElement in childElements)
+                            {
+                                switch (childElement.ContentType.Alias)
+                                {
+                                    case DocumentTypes.FlipTeaser.Alias:
+                                        var flipTeaser = new FlipTeaser(childElement, null);
+                                        flipTeaser.Image = childElement.HasValue(DocumentTypes.FlipTeaser.Fields.FrontImage) ?
+                                            ImageService.GetImage(childElement.Value<IPublishedContent>(DocumentTypes.FlipTeaser.Fields.FrontImage), height: 300, width: 300) : null;
+                                        childModules.Add(flipTeaser);
+                                        break;
+                                }
+                                
+                            }
+                            twoColModel.Elements = childModules;
+                            result.Add(twoColModel);
+
+
+                            break;
                     }
                 }
 
