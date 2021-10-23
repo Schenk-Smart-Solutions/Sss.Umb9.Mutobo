@@ -55,7 +55,17 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
             }
 
             var model = ContententService.GetPageModel(CurrentPage);
-  
+
+            var homePage = CurrentPage.AncestorsOrSelf()
+                .FirstOrDefault(c => c.ContentType.Alias == DocumentTypes.HomePage.Alias);
+
+            model.GoogleAnalyticsKey = homePage != null && 
+                homePage.HasValue(DocumentTypes.BasePage.Fields.GoogleAnalyticsKey) ? 
+                homePage.Value<string>(DocumentTypes.BasePage.Fields.GoogleAnalyticsKey) 
+                : string.Empty;
+
+
+
             model.HeaderConfiguration = PageLayoutService.GetHeaderConfiguration(CurrentPage);
             model.FooterConfiguration = PageLayoutService.GetFooterConfiguration(CurrentPage);
             //model.FooterConfiguration.HomePageLogo = model.HeaderConfiguration.Logo;

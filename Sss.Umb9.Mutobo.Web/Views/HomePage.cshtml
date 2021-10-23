@@ -6,12 +6,33 @@
 }
 
 <base-o-body>
+
+
+
+    <div>
+        <base-a-call-for-action target="'_blank'"
+                                href="/offerte-anfordern"
+                                background-color="rgba(128, 0, 0, .8)"
+                                position="fixed"
+                                position-mobile="static"
+                                right="5vw"
+                                z-index:"0"
+                                namespace="cta-">
+            <h4>Offerte <br />anfordern</h4>
+            <p>
+                es lohnt sich!
+            </p>
+        </base-a-call-for-action>
+    </div>
+
+
     <h1>@Model.PageTitle</h1>
     @if (Model.Modules != null && Model.Modules.Any())
     {
         foreach (var module in Model.Modules)
         {
             @await module.RenderModule(this.Html)
+
             if (module.SpacerAfterModule)
             {
                 <div class="spacer"></div>
@@ -19,4 +40,6 @@
         }
 
     }
+
+
 </base-o-body>

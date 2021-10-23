@@ -1,5 +1,12 @@
 ﻿@model Sss.Umb9.Mutobo.PoCo.GoogleAnalyticsModel
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VE3DKLSV45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-<c-tag-manager id="@Model.Key"></c-tag-manager>
+    gtag('config', '@Model.Key');
+</script>

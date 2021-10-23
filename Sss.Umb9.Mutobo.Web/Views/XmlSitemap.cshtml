@@ -14,7 +14,7 @@
         if (!node.ExcludeFromXMLSitemap)
         {
             <url>
-                <loc>@node.Content.Url(mode: UrlMode.Absolute).Replace("http", "https")</loc>
+                <loc>@node.Content.Url(mode: UrlMode.Absolute)</loc>
                 <lastmod>@($"{node.Content.UpdateDate:s}+00:00")</lastmod>
                 <changefreq>@(!string.IsNullOrEmpty(node.SearchEngineFrequency) ? node.SearchEngineFrequency : "weekly")</changefreq>
                 <priority>@node.SearchEngineRelativePriority</priority>

@@ -16,11 +16,10 @@ namespace Sss.Umb9.Mutobo.Modules
 {
     public class BlogModule : MutoboContentModule, IModule
     {
+        public IPublishedContent ParentPage => this.HasValue(DocumentTypes.BlogModule.Fields.ParentPage) ?
+            this.Value<IPublishedContent>(DocumentTypes.BlogModule.Fields.ParentPage) : null;
 
-        public IEnumerable<ArticlePage> BlogEntries => this.HasValue(DocumentTypes.BlogModule.Fields.ParentPage)
-    ? this.Value<IPublishedContent>(DocumentTypes.BlogModule.Fields.ParentPage).Children.OrderByDescending(c => c.CreateDate)
-        .Select(c => new ArticlePage(c))
-    : null;
+        public IEnumerable<ArticlePage> BlogEntries {get; set;}
 
         public BlogModule(IPublishedElement content, IPublishedValueFallback publishedValueFallback) : base(content, publishedValueFallback)
         {

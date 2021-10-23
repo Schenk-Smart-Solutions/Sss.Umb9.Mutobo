@@ -127,10 +127,23 @@ namespace Sss.Umb9.Mutobo.Services
                         //    });
                         //    break;
                         case DocumentTypes.BlogModule.Alias:
-                            result.Add(new BlogModule(element.value, null)
+                            var model = new BlogModule(element.value, null)
                             {
                                 SortOrder = element.index
-                            });
+                            };
+
+                            model.BlogEntries = model.ParentPage != null ?
+                                model.ParentPage.Children.Select(c => new ArticlePage(c) {
+                                    EmotionImages = c.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
+                                    ImageService.GetImages(c.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages)) : null
+                                }) 
+                                : CurrentPage.Children.Select(c => new ArticlePage(c) {
+                                    EmotionImages = c.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
+                                    ImageService.GetImages(c.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages)) : null
+                                });
+
+                           
+                            result.Add(model);
                             break;
                         case DocumentTypes.Accordeon.Alias:
                             result.Add(new Accordeon(element.value, null)
@@ -162,16 +175,16 @@ namespace Sss.Umb9.Mutobo.Services
                         //    });
                         //    break;
                         case DocumentTypes.ContactForm.Alias:
-                            var model = new ContactForm(element.value, null);
+                            var contactFormModel = new ContactForm(element.value, null);
 
-                            model.Data = new ContactFormData
+                            contactFormModel.Data = new ContactFormData
                             {
-                                ReceiverMailConfigId = model.ReceiverMailConfig.Content.Id,
-                                SenderMailConfigId = model.SenderMailConfig.Content.Id,
-                                LandingPageId = model.LandingPage.Key
+                                ReceiverMailConfigId = contactFormModel.ReceiverMailConfig.Content.Id,
+                                SenderMailConfigId = contactFormModel.SenderMailConfig.Content.Id,
+                                LandingPageId = contactFormModel.LandingPage.Key
                             };
 
-                            result.Add(model);
+                            result.Add(contactFormModel);
                             break;
                     }
                 }
