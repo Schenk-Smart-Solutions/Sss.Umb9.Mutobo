@@ -1,0 +1,52 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Sss.Umb9.Mutobo.Extensions
+@using Sss.Umb9.Mutobo.PoCo
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Sss.Umb9.Mutobo.PageModels.SearchResultModel>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<o-body>
+
+
+    @await Html.PartialAsync("~/Views/Partials/SearchForm.cshtml", new SearchFormModel() { })
+
+    @if (!string.IsNullOrEmpty(Model.Term))
+    {
+        <h3>@Umbraco.GetDictionaryValue("SearchResultsPageTitle")</h3>
+        if (Model.Results.Any())
+        {
+            //TODO: Texte in DictionaryKeys
+            <p>@string.Format("TRANSLATE", Model.Term, Model.Results.Count())</p>
+
+            foreach (var searchResults in Model.Results)
+            {
+                <div>
+                    <h4>@searchResults.Title</h4>
+                    <p>@Html.Raw(searchResults.Abstract)</p>
+                    @*Uncomment this to reenable PDF-Results *@
+                    @*@if (searchResults.Documents != null && searchResults.Documents.Any())
+                        {
+
+                            <p>
+                                @(string.Format(Current.UmbracoHelper.GetDictionaryValue(DictionaryKeys.SearchPage.PdfResultText), Model.Term))
+                                <ul>
+                                    @foreach (var doc in searchResults.Documents)
+                                    {
+                                        <li><a href="@doc.Url" target="">@doc.Name</a></li>
+
+                                    }
+                                </ul>
+                            </p>
+                        }*@
+                    <a href="@searchResults.Url">@searchResults.UrlTitle</a>
+                </div>
+            }
+        }
+        else
+        {
+            <p>@Umbraco.GetDictionaryValue("SearchResultsPageNoResults") "@Model.Term"</p>
+        }
+    }
+</o-body>

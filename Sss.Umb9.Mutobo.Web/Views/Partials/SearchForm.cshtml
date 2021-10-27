@@ -1,0 +1,18 @@
+﻿@model Sss.Umb9.Mutobo.PoCo.SearchFormModel
+@using Sss.Umb9.Mutobo.Controllers.SurfaceControllers
+
+
+<m-form type="search" namespace="search-" use-html-submit >
+    @using (Html.BeginUmbracoForm<SearchFormController>(nameof(SearchFormController.PostData), FormMethod.Post))
+    {
+        <a-input type="text" namespace="search-field-">
+            @Html.Label("TRANSLATE")"")
+            @Html.TextBoxFor(m => m.SearchTerm, new { placeholder = "TRANSLATE" })
+        </a-input>
+        <a-button src="~/assets/img/yellow/LUPE.svg" namespace="search-button-">
+            <button type="submit" aria-label="TRANSLATE">
+                Suchen
+            </button>
+        </a-button>
+    }
+</m-form>

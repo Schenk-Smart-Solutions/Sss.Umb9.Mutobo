@@ -19,7 +19,9 @@
         <link href="~/web-components-cms-template-base/src/css/fonts.css" rel="stylesheet" />*@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>@Model.PageTitle</title>
-    @await Html.PartialAsync("~/Views/Partials/SEOConfiguration.cshtml")
+
+
+    @*@await Html.PartialAsync("~/Views/Partials/SEOConfiguration.cshtml")*@
 
     @if (!string.IsNullOrEmpty(Model.GoogleAnalyticsKey))
     {
@@ -57,6 +59,10 @@
             document.getElementById("demo-form").submit();
         }
     </script>
+    
+    <script rel="preload" type="module">self.Environment = {
+    mobileBreakpoint: '1250px'
+    }</script>
 </body>
 
 </html>

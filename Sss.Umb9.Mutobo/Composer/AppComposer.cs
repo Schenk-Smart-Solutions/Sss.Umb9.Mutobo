@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sss.Umb9.Mutobo.Components;
 using Sss.Umb9.Mutobo.Interfaces;
@@ -28,7 +30,7 @@ namespace Sss.Umb9.Mutobo.Composer
         private void AddComponents(IUmbracoBuilder builder)
         {
             builder.Components().Append<MinifierComponent>();
-            //composition.Components().Append<SearchConfigurationComponent>();
+            builder.Components().Append<SearchConfigurationComponent>();
             //composition.Components().Append<HtmlMinifierComponent>();
             //composition.Components().Append<CustomDropDownPopulateComponent>();
             //composition.Components().Append<CustomIndexComponent>();
@@ -48,9 +50,9 @@ namespace Sss.Umb9.Mutobo.Composer
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddSingleton<IPageLayoutService, PageLayoutService>();
             builder.Services.AddSingleton<IPictureLinkService, PictureLinkService>();
-
-
-
+            builder.Services.AddSingleton<ISearchService, SearchService>();
+            builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>(); 
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

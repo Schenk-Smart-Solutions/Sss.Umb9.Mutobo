@@ -256,9 +256,14 @@ namespace Sss.Umb9.Mutobo.Services
                     { 
                         Modules = CurrentPage.HasValue(DocumentTypes.HomePage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules) : null
                     };
+
+                case DocumentTypes.SearchResults.Alias:
+                    return new Sss.Umb9.Mutobo.PageModels.SearchResultModel(content)
+                    {
+
+
+                    };
             }
-
-
         }
 
         private Teaser GetTeaser(IPublishedElement element, int index)
