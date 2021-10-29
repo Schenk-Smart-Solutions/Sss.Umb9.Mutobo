@@ -21,14 +21,12 @@
         <Content Include="umbraco/**" CopyToOutputDirectory="Always" />
         <Compile Remove="App_Plugins\**" />
         <Compile Remove="wwwroot\media\**" />
-        <Compile Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
         <Content Remove="App_Plugins\**" />
         <Content Remove="umbraco/Data/**" />
         <Content Remove="umbraco/Logs/**" />
         <Content Remove="umbraco/mediacache/**" />
         <Content Remove="umbraco/models/**" />
         <Content Remove="wwwroot\media\**" />
-        <Content Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
         <Compile Include="umbraco/models/**" Exclude="**/*.flag" />
     </ItemGroup>
 
@@ -37,10 +35,8 @@
     <ItemGroup>
       <EmbeddedResource Remove="App_Plugins\**" />
       <EmbeddedResource Remove="wwwroot\media\**" />
-      <EmbeddedResource Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
       <None Remove="App_Plugins\**" />
       <None Remove="wwwroot\media\**" />
-      <None Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
     </ItemGroup>
 
 
@@ -59,7 +55,6 @@
 
     <ItemGroup>
       <Content Include="favicon.ico" />
-      <Content Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\.vscode\settings.json" />
     </ItemGroup>
 
 
@@ -112,73 +107,6 @@
       <None Include="uSync\v9\Media\victor-g7df370d58-1920.config" />
       <None Include="uSync\v9\Media\vogel.config" />
       <None Include="uSync\v9\Media\website.config" />
-      <None Include="wwwroot\web-components-cms-template-base\.gitmodules" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\molecules\CookieBanner.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\molecules\FlipTile.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\organisms\Body.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\organisms\Style.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\organisms\Wrapper.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\.gitignore" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\LICENSE" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\README.md" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Arrow.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Button.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Input.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Link.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Logo.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\MenuIcon.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Picture.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Stamp.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Title.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\atoms\Video.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\controllers\TagManager.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\CheckboxWrapper.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\CookieBanner.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\Details.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\Flyer.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\Form.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\Highlight.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\Navigation.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\PlaylistItem.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\Teaser.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\molecules\WideTeaser.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\msrc\CookieBanner.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\Body.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\BodyBootstrap.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\BodyGetNews.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\Footer.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\Header.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\HighlightList.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\IntersectionScrollEffect.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\Modal.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\Playlist.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\Stage.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\organisms\TeaserWrapper.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\pages\General.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\prototypes\Intersection.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\prototypes\Mutation.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\prototypes\Shadow.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\components\thirdParty\MacroCarousel.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\es\helpers\Debugging.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\fonts\FuturaT\FuturaT-Book.woff2" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\fonts\OPTIFutura-ExtraBlackCond\OPTIFutura-ExtraBlackCond.ttf.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\ClubConcertLogo.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\ClubConcertLogo_cyan.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\cyan\LOGO_FGE_MK_CYAN_D.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\cyan\LOGO_FGE_MK_CYAN_EN.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\cyan\LOGO_FGE_MK_CYAN_FR.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\cyan\LUPE_CYAN.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\cyan\MIGROS_KULTURPROZENT_CLASSICS_TICKET_CYAN.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\kulturprozent_weiss_d.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\migros_kulturprozent_classics_cyan.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\migros_kulturprozent_classics_yellow.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\white\LUPE_WHITE.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\white\MIGROS_KULTURPROZENT_CLASSICS_TICKET_WHITE.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\yellow\LUPE_YELLOW.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\src\img\yellow\MIGROS_KULTURPROZENT_CLASSICS_TICKET_YELLOW.svg" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\wc-config.js" />
-      <None Include="wwwroot\web-components-cms-template-base\src\es\helpers\Debugging.js" />
-      <None Include="wwwroot\web-components-cms-template-base\wc-config.js" />
     </ItemGroup>
 
     <!-- Set this to true if ModelsBuilder mode is not InMemoryAuto-->
