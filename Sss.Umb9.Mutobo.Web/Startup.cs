@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,6 +15,7 @@ namespace Sss.Umb9.Mutobo.Web
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _config;
 
@@ -54,31 +56,39 @@ namespace Sss.Umb9.Mutobo.Web
             services.AddWebMarkupMin(
 
 
-                
+
             options =>
         {
 
 
             options.AllowMinificationInDevelopmentEnvironment = true;
             options.AllowCompressionInDevelopmentEnvironment = true;
-            
+
         })
         .AddHtmlMinification(
             options =>
             {
                 options.ExcludedPages = new List<IUrlMatcher>
                     {
- 
+
                         new WildcardUrlMatcher("/umbraco/**")
                     };
                 options.MinificationSettings.RemoveRedundantAttributes = false;
                 options.MinificationSettings.RemoveHttpProtocolFromAttributes = false;
                 options.MinificationSettings.RemoveHttpsProtocolFromAttributes = false;
-              
+
 
 
             })
         .AddHttpCompression();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://www.google.com");
+                                  });
+            });
 
         }
 
@@ -94,6 +104,24 @@ namespace Sss.Umb9.Mutobo.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
+            //app.UseResponseCaching();
+
+            //app.Use(async (context, next) =>
+            //{
+            //    context.Response.GetTypedHeaders().CacheControl =
+            //        new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+            //        {
+            //            Public = true,
+            //            MaxAge = TimeSpan.FromDays(1),
+
+            //        };
+
+            //    context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+            //        new string[] { "Accept-Encoding" };
+
+            //    await next();
+            //});
             app.UseWebMarkupMin();
 
             app.UseUmbraco()

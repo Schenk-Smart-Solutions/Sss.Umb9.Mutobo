@@ -50,7 +50,7 @@ namespace Sss.Umb9.Mutobo.Composer
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddSingleton<IPageLayoutService, PageLayoutService>();
             builder.Services.AddSingleton<IPictureLinkService, PictureLinkService>();
-            builder.Services.AddSingleton<ISearchService, SearchService>();
+            builder.Services.AddScoped<ISearchService, SearchService>();
             builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>(); 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }

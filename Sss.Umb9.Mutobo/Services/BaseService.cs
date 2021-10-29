@@ -34,10 +34,6 @@ namespace Sss.Umb9.Mutobo.Services
             {
                 CurrentPage = Context.PublishedRequest.PublishedContent;
             }
-
-
-
-     
         }
 
     }

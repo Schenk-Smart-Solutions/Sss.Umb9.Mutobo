@@ -4,25 +4,37 @@
 
 
 
-    <base-o-wrapper>
+
+    <base-o-wrapper namespace="flipcard-wrapper-">
+        <style>
+            @@media only screen and (max-width: 1250px) {
+
+                :host > section {
+                    display: flex !important;
+                    flex-direction:  column;
+                    align-items: center;
+                }
+            }
+        </style>
+
         @if (Model.Elements != null && Model.Elements.Any())
         {
             foreach (var element in Model.Elements)
             {
-             
 
 
-                    @switch (element.Alias)
-                    {
 
-                        case DocumentTypes.FlipTeaser.Alias:
+                @switch (element.Alias)
+                {
 
-                            await Html.RenderPartialAsync("~/Views/Modules/FlipTeaser.cshtml", element as Sss.Umb9.Mutobo.Modules.FlipTeaser);
+                    case DocumentTypes.FlipTeaser.Alias:
+
+                        await Html.RenderPartialAsync("~/Views/Modules/FlipTeaser.cshtml", element as Sss.Umb9.Mutobo.Modules.FlipTeaser);
 
 
-                            break;
-                    }
-           
+                        break;
+                }
+
             }
 
         }

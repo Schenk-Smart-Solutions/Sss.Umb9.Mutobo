@@ -18,11 +18,13 @@
         if (Model.Results.Any())
         {
             //TODO: Texte in DictionaryKeys
-            <p>@string.Format("TRANSLATE", Model.Term, Model.Results.Count())</p>
+            <p>@string.Format("Zu deiner Suche nach \"{0}\" wurde/n {1} Resultat/e gefunden:", Model.Term, Model.Results.Count())</p>
+
+            <hr />
 
             foreach (var searchResults in Model.Results)
             {
-                <div>
+                <div style="display:flex; flex-direction:column; padding:5vh 0;">
                     <h4>@searchResults.Title</h4>
                     <p>@Html.Raw(searchResults.Abstract)</p>
                     @*Uncomment this to reenable PDF-Results *@
@@ -42,11 +44,12 @@
                         }*@
                     <a href="@searchResults.Url">@searchResults.UrlTitle</a>
                 </div>
+                <hr />
             }
         }
-        else
+        else if (!string.IsNullOrEmpty(Model?.Term))
         {
-            <p>@Umbraco.GetDictionaryValue("SearchResultsPageNoResults") "@Model.Term"</p>
+            <p>@($"Die Suche nach \"{Model.Term}\" ergab keine Resultate")</p>
         }
     }
 </o-body>

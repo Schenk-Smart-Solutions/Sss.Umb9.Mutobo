@@ -49,7 +49,7 @@ namespace Sss.Umb9.Mutobo.Services
                 {
                     HeaderConfiguration = PageLayoutService.GetHeaderConfiguration(CurrentPage),
                     FooterConfiguration = PageLayoutService.GetFooterConfiguration(CurrentPage),
-                    Term = term
+                    Term = term ?? string.Empty
                 };
             }
             catch (AppSettingsException e)
@@ -65,24 +65,32 @@ namespace Sss.Umb9.Mutobo.Services
                 var currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name.ToString().ToLower();
                 var searchTerm = HtmlHelperExtensions.SearchFriendlyString(term);
                 var diffFields = new string[] { "nodeName", "__NodeTypeAlias", "fileTextContent", "abstract_" + currentCulture, "abstract", "mainContent", "city", "cities", "cityName", "location", "pageTitle", "modules", "orchestra", "artists", "shortDescription_" + currentCulture, "programAccordeon_" + currentCulture };
-                var query = index.Searcher.CreateQuery(null, BooleanOperation.And)
-                    .GroupedOr(diffFields, searchTerm);
-                var results = query.Execute();
 
-                result.Results = results
-                    .Select(r => Context.Content.GetById(false, int.Parse(r.Id)))
-                    .Select(node => new PoCo.SearchResult
-                    {
-                        Url = node.Url(),
-                        Abstract = node.HasProperty(DocumentTypes.ArticlePage.Fields.Abstract) ? node.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract) : string.Empty,
-                        Title = node.HasProperty(DocumentTypes.BasePage.Fields.PageTitle) &&
-                                             node.HasValue(DocumentTypes.BasePage.Fields.PageTitle) &&
-                                             !string.IsNullOrEmpty(node.Value<string>(DocumentTypes.BasePage.Fields.PageTitle).Trim()) ?
-                                         node.Value<string>(DocumentTypes.BasePage.Fields.PageTitle) :
-                                         node.Name,
-                        UrlTitle = "Mehr erfahren"
+                if (!string.IsNullOrEmpty(term))
+                {
+                    var query = index.Searcher.CreateQuery(null, BooleanOperation.And)
+    .GroupedOr(diffFields, searchTerm);
+                    var results = query.Execute();
 
-                    });
+                    result.Results = results
+                        .Select(r => Context.Content.GetById(false, int.Parse(r.Id)))
+                        .Select(node => new PoCo.SearchResult
+                        {
+                            Url = node.Url(),
+                            Abstract = node.HasProperty(DocumentTypes.ArticlePage.Fields.Abstract) ? node.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract) : string.Empty,
+                            Title = node.HasProperty(DocumentTypes.BasePage.Fields.PageTitle) &&
+                                                 node.HasValue(DocumentTypes.BasePage.Fields.PageTitle) &&
+                                                 !string.IsNullOrEmpty(node.Value<string>(DocumentTypes.BasePage.Fields.PageTitle).Trim()) ?
+                                             node.Value<string>(DocumentTypes.BasePage.Fields.PageTitle) :
+                                             node.Name,
+                            UrlTitle = "Mehr erfahren"
+
+                        });
+                }
+                else {
+                    result.Results = new List<Sss.Umb9.Mutobo.PoCo.SearchResult>();
+                }
+
             }
             else
             {

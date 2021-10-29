@@ -2,7 +2,9 @@
 @using System.Threading;
 @using Sss.Umb9.Mutobo.PoCo
 @using Umbraco.Cms.Core.WebAssets
+@using Sss.Umb9.Mutobo.Interfaces
 @inject IRuntimeMinifier runtimeMinifier
+@inject ISeoService seoServive
 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Sss.Umb9.Mutobo.PageModels.BasePage>
 @* the fun starts here *@
@@ -13,6 +15,9 @@
 <html lang="@Thread.CurrentThread.CurrentUICulture.Name">
 <head>
     <meta charset=UTF-8>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://www.google.com https://cdn.jsdelivr.net/ https://www.googletagmanager.com/ https://www.gstatic.com/; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com">
+    
+    
     <meta name=viewport content="width=device-width, initial-scale=1.0">
     @*<link href="~/web-components-cms-template-base/src/css/variables.css" rel="stylesheet" />
         <link href="~/web-components-cms-template-base/src/css/misc.css" rel="stylesheet" />
@@ -21,7 +26,7 @@
     <title>@Model.PageTitle</title>
 
 
-    @*@await Html.PartialAsync("~/Views/Partials/SEOConfiguration.cshtml")*@
+    @await Html.PartialAsync("~/Views/Partials/SEOConfiguration.cshtml", seoServive.GetSeoConfiguration())
 
     @if (!string.IsNullOrEmpty(Model.GoogleAnalyticsKey))
     {

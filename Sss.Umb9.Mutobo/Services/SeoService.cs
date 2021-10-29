@@ -31,7 +31,7 @@ namespace Sss.Umb9.Mutobo.Services
             return new SeoConfiguration
             {
                 MetaTitle = GetMetaDataValue(DocumentTypes.BasePage.Fields.MetaTitle, CurrentPage),
-                MetaDescription = GetMetaDataValue(DocumentTypes.BasePage.Fields.MetaDescription, CurrentPage),
+                MetaDescription = GetMetaDescription(CurrentPage),
                 MetaKeywords = keywords,
                 ThumbNailWidth = 300,
                 ThumbNailHeight = 300,
@@ -86,6 +86,26 @@ namespace Sss.Umb9.Mutobo.Services
         }
 
 
+        private string GetMetaDescription(IPublishedContent content)
+        {
+            var result = string.Empty;
+            var firstnodeWithDescription = content.AncestorsOrSelf().FirstOrDefault(c => c.HasProperty(DocumentTypes.BasePage.Fields.MetaDescription) && c.HasValue(DocumentTypes.BasePage.Fields.MetaDescription));
+
+            if (firstnodeWithDescription != null)
+            {
+                result = firstnodeWithDescription.Value<string>(DocumentTypes.BasePage.Fields.MetaDescription);
+            }
+            else
+            {
+                result = content.HasProperty(DocumentTypes.ArticlePage.Fields.Abstract) &&
+                    content.HasProperty(DocumentTypes.ArticlePage.Fields.Abstract) ?
+                    content.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract) : string.Empty;
+            }
+
+            return result;
+        }
+
+
         private string GetMetaDataValue(string fieldName, IPublishedContent content)
         {
             var nodes = content.AncestorsOrSelf();
@@ -99,10 +119,15 @@ namespace Sss.Umb9.Mutobo.Services
 
                 if (fieldName == DocumentTypes.BasePage.Fields.MetaDescription && string.IsNullOrEmpty(result))
                 {
+
+
+
                     result = node.HasProperty(DocumentTypes.ArticlePage.Fields.Abstract) &&
                              node.HasValue(DocumentTypes.ArticlePage.Fields.Abstract)
                         ? node.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract)
                         : string.Empty;
+
+                   
                 }
 
                 if (!string.IsNullOrEmpty(result))

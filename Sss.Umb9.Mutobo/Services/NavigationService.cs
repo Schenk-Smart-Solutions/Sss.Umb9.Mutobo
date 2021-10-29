@@ -18,19 +18,11 @@ namespace Sss.Umb9.Mutobo.Services
 {
     public class NavigationService : BaseService, INavigationService
     {
-      
-
-
-
-
         public NavigationService(ILogger<NavigationService> logger, IUmbracoContextAccessor contextAccessor)
             : base(logger, contextAccessor)
         {
            
         }
-
-   
-
 
 
         /// <summary>

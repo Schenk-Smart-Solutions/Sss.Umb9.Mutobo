@@ -3,9 +3,36 @@
 @model Sss.Umb9.Mutobo.Configuration.FooterConfiguration
 <o-footer namespace="footer-" theme="@Model.Theme">
     <style>
+        :host {
+          
+        }
+
+
+        @@media only screen and (max-width: 1250px) {
+
+            :host footer {
+                
+                flex-direction: column !important;
+            }
+
+                :host footer div {
+                    text-align: center;
+                }
+
+                    :host footer div ul {
+                        padding: 0;
+                        justify-content: center;
+                        margin-bottom: 2em;
+                    }
+
+        }
+
+
         :host footer {
             height: 100%;
+
         }
+
 
         :host .social-links {
             display: flex;
@@ -25,12 +52,12 @@
         <h4>Besuche mich auf Social Media:</h4>
         <ul class="social-links">
             <li>
-                <a href="https://www.facebook.com/Schenk-Smart-Solutions-100137789137575" target="_blank" title="facebook">
+                <a href="https://www.facebook.com/Schenk-Smart-Solutions-100137789137575" rel="noopener noreferrer"  target="_blank" title="facebook">
                     <img src="~/assets/img/icons8-facebook.svg" alt="facebook" />
                 </a>
             </li>
             <li>
-                <a href="https://www.linkedin.com/company/76560350" target="_blank" title="linkedIn">
+                <a href="https://www.linkedin.com/company/76560350" target="_blank" rel="noopener noreferrer" title="linkedIn">
                     <img src="~/assets/img/icons8-linkedin.svg" alt="linkedIn" />
                 </a>
             </li>
