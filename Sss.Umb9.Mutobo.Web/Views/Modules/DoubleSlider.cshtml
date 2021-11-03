@@ -3,10 +3,12 @@
 
 
 
+
+
 <div>
 
 
-    <third-party-macro-carousel pagination loop height="@(Model.Height != null ? $"{Model.Height}px" : "auto")" namespace="carousel-" interval="@(Model.Interval.HasValue && Model.Interval > 0 ? Model.Interval : 5000)" sync-id="@Model.Key">
+    <third-party-macro-carousel navigation loop height="@(Model.Height != null ? $"{Model.Height}px" : "auto")" namespace="carousel-" interval="@(Model.Interval.HasValue && Model.Interval > 0 ? Model.Interval : 5000)" sync-id="@Model.Key">
         @foreach (var slide in Model.Slides)
         {
             if (slide.Image != null)

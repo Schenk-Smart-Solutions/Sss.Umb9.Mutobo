@@ -23,6 +23,7 @@ namespace Sss.Umb9.Mutobo.Services
         protected readonly ISliderService SliderService;
         protected readonly IConfigurationService ConfigurationService;
         private readonly ICardService _cardService;
+        protected readonly IThemeService ThemeService;
 
 
 
@@ -32,12 +33,14 @@ namespace Sss.Umb9.Mutobo.Services
             IImageService imageService,
             ISliderService sliderService,
             ICardService cardService,
-            IUmbracoContextAccessor contextAccessor)
+            IUmbracoContextAccessor contextAccessor,
+            IThemeService themeService)
                 : base(logger, contextAccessor)
         {
             SliderService = sliderService;
             _cardService = cardService;
             ImageService = imageService;
+            ThemeService = themeService;
         }
 
         private IEnumerable<IModule> GetContent(IPublishedContent content, string fieldName)
@@ -215,6 +218,9 @@ namespace Sss.Umb9.Mutobo.Services
                     }
                 }
 
+           
+
+
                 return result;
             }
 
@@ -223,16 +229,18 @@ namespace Sss.Umb9.Mutobo.Services
 
         public BasePage GetPageModel(IPublishedContent content)
         {
+            BasePage result = null;
             switch (content.ContentType.Alias)
             {
                 case DocumentTypes.BasePage.Alias:
                 default:
-                    return new BasePage(content);
+                    result = new BasePage(content);
+                    break;
 
                 case DocumentTypes.ArticlePage.Alias:
 
 
-                    return new ArticlePage(content)
+                    result = new ArticlePage(content)
                     {
                         EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
                         ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
@@ -240,9 +248,9 @@ namespace Sss.Umb9.Mutobo.Services
                         height: 450) : null,
                        
                     };
-
+                    break;
                 case DocumentTypes.ContentPage.Alias:
-                    return new ContentPage(content)
+                    result = new ContentPage(content)
                     {
                         EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
                         ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
@@ -250,20 +258,27 @@ namespace Sss.Umb9.Mutobo.Services
                         height: 450) : null,
                         Modules = CurrentPage.HasValue(DocumentTypes.ContentPage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.ContentPage.Fields.Modules) : null
                     };
-
+                    break;
                 case DocumentTypes.HomePage.Alias:
-                    return new HomePage(content) 
+                    result = new HomePage(content) 
                     { 
                         Modules = CurrentPage.HasValue(DocumentTypes.HomePage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules) : null
                     };
-
+                    break;
                 case DocumentTypes.SearchResults.Alias:
-                    return new Sss.Umb9.Mutobo.PageModels.SearchResultModel(content)
+                    result = new Sss.Umb9.Mutobo.PageModels.SearchResultModel(content)
                     {
 
 
                     };
+                    break;
+
             }
+
+            result.Theme = ThemeService.GetTheme(CurrentPage);
+
+            return result;
+
         }
 
         private Teaser GetTeaser(IPublishedElement element, int index)

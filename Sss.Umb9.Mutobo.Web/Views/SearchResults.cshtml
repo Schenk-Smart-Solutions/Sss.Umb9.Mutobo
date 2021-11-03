@@ -19,9 +19,7 @@
         {
             //TODO: Texte in DictionaryKeys
             <p>@string.Format("Zu deiner Suche nach \"{0}\" wurde/n {1} Resultat/e gefunden:", Model.Term, Model.Results.Count())</p>
-
             <hr />
-
             foreach (var searchResults in Model.Results)
             {
                 <div style="display:flex; flex-direction:column; padding:5vh 0;">

@@ -8,6 +8,21 @@
 
 
 <base-o-body>
+    <style>
+        :host ul {
+            margin-left: 9vw;
+        
+        }
+
+
+        @@media only screen and (max-width: 1000px) {
+            :host ul {
+                margin: 0;
+            }
+        }
+
+    </style>
+
     @await Html.PartialAsync("~/Views/Partials/ArticleContent.cshtml", Model)
     <div class="spacer"></div>
     @if (Model.Modules != null && Model.Modules.Any())

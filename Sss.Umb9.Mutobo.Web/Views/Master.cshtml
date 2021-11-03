@@ -15,9 +15,9 @@
 <html lang="@Thread.CurrentThread.CurrentUICulture.Name">
 <head>
     <meta charset=UTF-8>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://www.google.com https://cdn.jsdelivr.net/ https://www.googletagmanager.com/ https://www.gstatic.com/; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com">
-    
-    
+    @*<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://www.google.com https://cdn.jsdelivr.net/ https://www.googletagmanager.com/ https://www.gstatic.com/; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' 'unsafe-inline'">*@
+
+
     <meta name=viewport content="width=device-width, initial-scale=1.0">
     @*<link href="~/web-components-cms-template-base/src/css/variables.css" rel="stylesheet" />
         <link href="~/web-components-cms-template-base/src/css/misc.css" rel="stylesheet" />
@@ -28,11 +28,18 @@
 
     @await Html.PartialAsync("~/Views/Partials/SEOConfiguration.cshtml", seoServive.GetSeoConfiguration())
 
+
+
     @if (!string.IsNullOrEmpty(Model.GoogleAnalyticsKey))
     {
         @await Html.PartialAsync("~/Views/Partials/GoogleAnalytics.cshtml", new GoogleAnalyticsModel() { Key = Model.GoogleAnalyticsKey })
     }
     @Html.Raw(await runtimeMinifier.RenderCssHereAsync("inline-css-bundle"))
+
+    @if (Model.Theme != null)
+    {
+         @await Html.PartialAsync("~/Views/Partials/CssVariables.cshtml", Model.Theme)
+    }
     <meta name="google-site-verification" content="_IpG1wUM8f4hPY4i-ZNFuzduXJnzEz-HqHgVKcHRe_Q" />
 </head>
 <body>
