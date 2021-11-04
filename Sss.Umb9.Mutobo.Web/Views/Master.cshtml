@@ -19,9 +19,9 @@
 
 
     <meta name=viewport content="width=device-width, initial-scale=1.0">
-    @*<link href="~/web-components-cms-template-base/src/css/variables.css" rel="stylesheet" />
+   <link href="~/web-components-cms-template-base/src/css/variables.css" rel="stylesheet" />
         <link href="~/web-components-cms-template-base/src/css/misc.css" rel="stylesheet" />
-        <link href="~/web-components-cms-template-base/src/css/fonts.css" rel="stylesheet" />*@
+        <link href="~/web-components-cms-template-base/src/css/fonts.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>@Model.PageTitle</title>
 
@@ -34,7 +34,7 @@
     {
         @await Html.PartialAsync("~/Views/Partials/GoogleAnalytics.cshtml", new GoogleAnalyticsModel() { Key = Model.GoogleAnalyticsKey })
     }
-    @Html.Raw(await runtimeMinifier.RenderCssHereAsync("inline-css-bundle"))
+    @*@Html.Raw(await runtimeMinifier.RenderCssHereAsync("inline-css-bundle1"))*@
 
     @if (Model.Theme != null)
     {
@@ -48,7 +48,7 @@
         @RenderBody()
         @await Html.PartialAsync("~/Views/Partials/Footer.cshtml", Model.FooterConfiguration as Sss.Umb9.Mutobo.Configuration.FooterConfiguration)
     </p-general>
-    @* <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>*@
+    <script src="/web-components-cms-template-base/wc-config.js?baseUrl=/web-components-cms-template-base/src/es/components/" type="text/javascript"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <m-cookie-banner storage="localStorage" namespace="cookie-banner-">
         <style>

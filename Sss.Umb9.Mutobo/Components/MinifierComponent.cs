@@ -19,7 +19,7 @@ namespace Sss.Umb9.Mutobo.Components
                 BundlingOptions.OptimizedAndComposite,
                 new[] { "~/web-components-cms-template-base/wc-config.js" });
 
-            _runtimeMinifier.CreateCssBundle("inline-css-bundle",
+            _runtimeMinifier.CreateCssBundle("inline-css-bundle1",
                 BundlingOptions.OptimizedAndComposite,
                 new[] { "~/web-components-cms-template-base/src/css/variables.css", "~/web-components-cms-template-base/src/css/misc.css", "~/web-components-cms-template-base/src/css/fonts.css" });
         }
