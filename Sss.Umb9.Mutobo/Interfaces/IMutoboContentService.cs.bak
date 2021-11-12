@@ -14,6 +14,5 @@ namespace Sss.Umb9.Mutobo.Interfaces
 
 
         BasePage GetPageModel(IPublishedContent content);
-        IEnumerable<IModule> GetContent(IPublishedContent content, string fieldName, string culture = null);
     }
 }

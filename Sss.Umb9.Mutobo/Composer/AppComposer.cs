@@ -40,7 +40,7 @@ namespace Sss.Umb9.Mutobo.Composer
         {
             builder.Services.AddSingleton<IImageService, ImageService>();
             builder.Services.AddSingleton<IConfigurationService, ConfigurationService>();
-            builder.Services.AddScoped<IMutoboContentService, MutoboContentService>();
+            builder.Services.AddTransient<IMutoboContentService, MutoboContentService>();
             builder.Services.AddScoped<ISeoService, SeoService>();
             builder.Services.AddScoped<IXmlSitemapService, XmlSitemapService>();
             builder.Services.AddSingleton<ICardService, CardService>();

@@ -24,6 +24,7 @@ namespace Sss.Umb9.Mutobo.Services
         protected readonly IConfigurationService ConfigurationService;
         private readonly ICardService _cardService;
         protected readonly IThemeService ThemeService;
+        private readonly IUmbracoContextFactory _umbracoContextFactory;
 
 
 
@@ -34,6 +35,7 @@ namespace Sss.Umb9.Mutobo.Services
             ISliderService sliderService,
             ICardService cardService,
             IUmbracoContextAccessor contextAccessor,
+            IUmbracoContextFactory contextFactory,
             IThemeService themeService)
                 : base(logger, contextAccessor)
         {
@@ -41,16 +43,23 @@ namespace Sss.Umb9.Mutobo.Services
             _cardService = cardService;
             ImageService = imageService;
             ThemeService = themeService;
+            _umbracoContextFactory = contextFactory;
         }
 
-        private IEnumerable<IModule> GetContent(IPublishedContent content, string fieldName)
+        public IEnumerable<IModule> GetContent(IPublishedContent content, string fieldName, string culture = null)
         {
-            if (content.HasValue(fieldName))
+            if (culture == null)
+            {
+                culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+            }
+
+
+            if (content.HasValue(fieldName, culture))
             {
                 var result = new List<MutoboContentModule>();
 
                 var elements =
-                    content.Value<IEnumerable<IPublishedElement>>(fieldName);
+                    content.Value<IEnumerable<IPublishedElement>>(fieldName, culture);
 
                 foreach (var element in elements.Select((value, index) => new { index, value }))
                 {
@@ -90,7 +99,7 @@ namespace Sss.Umb9.Mutobo.Services
                             break;
 
                         case DocumentTypes.Teaser.Alias:
-                            result.Add(GetTeaser(element.value, element.index));
+                            result.Add(GetTeaser(element.value, element.index, culture));
                             break;
                         case DocumentTypes.SliderComponent.Alias:
                             var sliderModule = new SliderComponent(element.value, null)
@@ -242,8 +251,8 @@ namespace Sss.Umb9.Mutobo.Services
 
                     result = new ArticlePage(content)
                     {
-                        EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
-                        ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
+                        EmotionImages = content.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
+                        ImageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
                         width: 800,
                         height: 450) : null,
                        
@@ -252,17 +261,20 @@ namespace Sss.Umb9.Mutobo.Services
                 case DocumentTypes.ContentPage.Alias:
                     result = new ContentPage(content)
                     {
-                        EmotionImages = CurrentPage.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
-                        ImageService.GetImages(CurrentPage.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
+                        EmotionImages = content.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages) ?
+                        ImageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
                         width: 800,
                         height: 450) : null,
-                        Modules = CurrentPage.HasValue(DocumentTypes.ContentPage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.ContentPage.Fields.Modules) : null
+                        Modules = content.HasValue(DocumentTypes.ContentPage.Fields.Modules) ? GetContent(content, DocumentTypes.ContentPage.Fields.Modules) : null
                     };
                     break;
                 case DocumentTypes.HomePage.Alias:
-                    result = new HomePage(content) 
-                    { 
-                        Modules = CurrentPage.HasValue(DocumentTypes.HomePage.Fields.Modules) ? GetContent(CurrentPage, DocumentTypes.HomePage.Fields.Modules) : null
+                    var txtImgSlides = content.HasValue(DocumentTypes.HomePage.Fields.HomeSlides) ?
+                        CurrentPage.Value<IEnumerable<IPublishedElement>>(DocumentTypes.HomePage.Fields.HomeSlides) : null;
+
+                    result = new HomePage(content)
+                    {
+                        Modules = content.HasValue(DocumentTypes.HomePage.Fields.Modules) ? GetContent(content, DocumentTypes.HomePage.Fields.Modules) : null
                     };
                     break;
                 case DocumentTypes.SearchResults.Alias:
@@ -275,13 +287,13 @@ namespace Sss.Umb9.Mutobo.Services
 
             }
 
-            result.Theme = ThemeService.GetTheme(CurrentPage);
+            result.Theme = ThemeService.GetTheme(content);
 
             return result;
 
         }
 
-        private Teaser GetTeaser(IPublishedElement element, int index)
+        private Teaser GetTeaser(IPublishedElement element, int index, string culture)
         {
 
             var teaser = new Teaser(element, null)
@@ -292,16 +304,37 @@ namespace Sss.Umb9.Mutobo.Services
 
             if (teaser.UseArticleData)
             {
-                var article = teaser.Link?.Udi != null ?
-                    new ArticlePage(Context.Content.GetById(teaser.Link.Udi)) : null;
 
-                if (article == null)
-                    throw new Exception($"Please make sure that you have a linked article page when using article data.");
+                if (teaser.Link?.Udi != null)
+                {
+                    IPublishedContent content;
+                   
+                    if (Context != null)
+                    {
+                        content = Context.Content.GetById(teaser.Link.Udi);
+                    }
+                    else
+                    {
+                        using (var ctx = _umbracoContextFactory.EnsureUmbracoContext())
+                        {
+                            content = ctx.UmbracoContext.Content.GetById(teaser.Link.Udi);
+                        }
+                    }
 
-                teaser.Images = GetHighlightImages(article.Content);
 
-                teaser.TeaserText = GetHighlightText(article.Content);
-                teaser.TeaserTitle = GetHighlightTitle(article.Content);
+
+
+
+                    teaser.Images =  GetHighlightImages(content, culture);
+
+                    teaser.TeaserText = content.HasValue(DocumentTypes.ArticlePage.Fields.Abstract, culture) ? content.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract, culture) : string.Empty;
+                    teaser.TeaserTitle = content.HasValue(DocumentTypes.BasePage.Fields.PageTitle, culture) ? content.Value<string>(DocumentTypes.BasePage.Fields.PageTitle, culture) : string.Empty;
+
+                }
+
+                
+
+
             }
             else
             {
@@ -321,34 +354,34 @@ namespace Sss.Umb9.Mutobo.Services
 
         }
 
-        private string GetHighlightText(IPublishedContent content)
-        {
-            string result = null;
+        //private string GetHighlightText(IPublishedContent content, string culture)
+        //{
+        //    string result = null;
 
-            if (content.HasValue(DocumentTypes.ArticlePage.Fields.Abstract))
-                result = content.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract);
-
-
-            return result;
-        }
-
-        private string GetHighlightTitle(IPublishedContent content)
-        {
-            string result = null;
+        //    if (content.HasValue(DocumentTypes.ArticlePage.Fields.Abstract))
+        //        result = content.Value<string>(DocumentTypes.ArticlePage.Fields.Abstract);
 
 
-            if (content.HasValue(DocumentTypes.BasePage.Fields.PageTitle))
-                result = content.Value<string>(DocumentTypes.BasePage.Fields.PageTitle);
+        //    return result;
+        //}
 
-            return result;
-        }
+        //private string GetHighlightTitle(IPublishedContent content)
+        //{
+        //    string result = null;
 
 
-        private IEnumerable<Image> GetHighlightImages(IPublishedContent content)
+        //    if (content.HasValue(DocumentTypes.BasePage.Fields.PageTitle))
+        //        result = content.Value<string>(DocumentTypes.BasePage.Fields.PageTitle);
+
+        //    return result;
+        //}
+
+
+        private IEnumerable<Image> GetHighlightImages(IPublishedContent content, string culture)
         {
             var result = new List<Image>();
 
-            if (content.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages))
+            if (content.HasValue(DocumentTypes.ArticlePage.Fields.EmotionImages, culture))
                 result.AddRange(ImageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages), width: 800, height: 450));
 
             return result;

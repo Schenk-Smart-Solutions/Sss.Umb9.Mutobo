@@ -19,7 +19,7 @@ namespace Sss.Umb9.Mutobo.Services
     {
  
         protected readonly ILogger Logger;
-        private readonly IUmbracoContextAccessor _umbracoContextAccessor;
+        protected readonly IUmbracoContextAccessor ContextAccessor;
         protected readonly IUmbracoContext Context;
         protected readonly IPublishedContent CurrentPage;
 
@@ -28,9 +28,9 @@ namespace Sss.Umb9.Mutobo.Services
         protected BaseService(ILogger logger, IUmbracoContextAccessor contextAccessor)
         {
             Logger = logger;
-            _umbracoContextAccessor = contextAccessor;
+            ContextAccessor = contextAccessor;
 
-            if (_umbracoContextAccessor.TryGetUmbracoContext(out Context)) 
+            if (ContextAccessor.TryGetUmbracoContext(out Context)) 
             {
                 CurrentPage = Context.PublishedRequest.PublishedContent;
             }

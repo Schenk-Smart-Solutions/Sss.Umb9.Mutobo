@@ -12,6 +12,9 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
 using Examine.Lucene.Providers;
+using Sss.Umb9.Mutobo.Interfaces;
+using Sss.Umb9.Mutobo.Modules;
+using Umbraco.Cms.Core.Services;
 
 namespace Sss.Umb9.Mutobo.Components
 {
@@ -19,15 +22,20 @@ namespace Sss.Umb9.Mutobo.Components
     {
         private readonly IExamineManager _examineManager;
         private readonly IUmbracoContextFactory _contextFactory;
+        private readonly IMutoboContentService _mutoboContentService;
+        private readonly IContentService _contentService;
 
 
-        public SearchConfigurationComponent(IExamineManager examineManager, IUmbracoContextFactory contextFactory)
+
+        public SearchConfigurationComponent(IExamineManager examineManager, IUmbracoContextFactory contextFactory, IMutoboContentService mutoboContentService, IContentService contentService = null)
         {
 
             // inject ExamineManager
             _examineManager = examineManager;
             //
             _contextFactory = contextFactory;
+            _mutoboContentService = mutoboContentService;
+            _contentService = contentService;
         }
 
 
@@ -37,13 +45,14 @@ namespace Sss.Umb9.Mutobo.Components
             IIndex externalIndex = null;
             IIndex pdfIndex = null;
 
-            if (_examineManager.TryGetIndex("ExternalIndex", out externalIndex))
+            if (_examineManager.TryGetIndex("ExternalIndex", out externalIndex)
+                && _examineManager.TryGetIndex(PdfIndexConstants.PdfIndexName, out pdfIndex))
             {
 
-               
+
                 // FieldDefinitionCollection contains all indexed fields 
                 externalIndex.FieldDefinitions.Append(new FieldDefinition("contents", FieldDefinitionTypes.FullText));
-                //((BaseIndexProvider)externalIndex).TransformingIndexValues += OnTransformingIndexValues;
+                ((BaseIndexProvider)externalIndex).TransformingIndexValues += OnTransformingIndexValues;
 
                 ////register multisearcher
                 //var multisearch = new MultiIndexSearcher("MultiSearcher", new IIndex[] { externalIndex, pdfIndex });
@@ -59,42 +68,108 @@ namespace Sss.Umb9.Mutobo.Components
         private void OnTransformingIndexValues(object sender, IndexingItemEventArgs e)
         {
             if (int.TryParse(e.ValueSet.Id, out var nodeId))
-                switch (e.ValueSet.ItemType)
-                {
 
-                    case "contentPage":
-                        using (var umbracoContext = _contextFactory.EnsureUmbracoContext())
+
+
+                using (var umbracoContext = _contextFactory.EnsureUmbracoContext())
+                {
+                    IPublishedContent contentNode = umbracoContext.UmbracoContext.Content.GetById(nodeId);
+
+                    if (contentNode != null)
+                    {
+                        foreach (var culture in contentNode.Cultures)
                         {
-                            IPublishedContent contentNode = umbracoContext.UmbracoContext.Content.GetById(nodeId);
-                           // IPublishedElement element = umbracoContext.UmbracoContext.Content.GetById(nodeId);
+
 
                             if (contentNode != null)
                             {
-                                var contentRichtext = string.Empty;
-                                if (contentNode.Value<IEnumerable<IPublishedElement>>(DocumentTypes.ContentPage.Fields.Modules) != null)
+
+                                string moduleContent;
+
+
+                                switch (contentNode.ContentType.Alias)
                                 {
-                                    foreach (var item in contentNode.Value<IEnumerable<IPublishedElement>>(DocumentTypes.ContentPage.Fields.Modules))
-                                    {
-
-                                        if (item.HasProperty("richText"))
+                                    case DocumentTypes.HomePage.Alias:
+                                        if (contentNode.HasValue(DocumentTypes.HomePage.Fields.Modules, culture.Key))
                                         {
-                                            var ncRichtext = item.GetProperty("richText").GetValue();
-                                            contentRichtext += " " + ncRichtext;
+                                            moduleContent = IndexModules(_mutoboContentService.GetContent(contentNode, DocumentTypes.HomePage.Fields.Modules, culture.Key) as IEnumerable<MutoboContentModule>);
+                                            e.ValueSet.Set("modules", moduleContent);
                                         }
+                                        break;
 
-                                    }
+                                    case DocumentTypes.ContentPage.Alias:
 
-                                    e.ValueSet.Set("modules", contentRichtext);
+
+                                        if (contentNode.HasValue(DocumentTypes.ContentPage.Fields.Modules, culture.Key))
+                                        {
+                                            moduleContent = IndexModules(_mutoboContentService.GetContent(contentNode, DocumentTypes.ContentPage.Fields.Modules, culture.Key) as IEnumerable<MutoboContentModule>);
+                                            e.ValueSet.Set("modules", moduleContent);
+                                        }
+                                        break;
+
+
                                 }
+
+
 
                             }
 
+
                         }
-                        break;
+
+                    }
+      
+
                 }
 
 
+
         }
+
+
+        private string IndexModules(IEnumerable<MutoboContentModule> modules)
+        {
+            var result = string.Empty;
+
+            foreach (var module in modules)
+            {
+
+                switch (module.ContentType.Alias)
+                {
+
+                    case DocumentTypes.Heading.Alias:
+                        if (module is Heading heading)
+                        {
+                            result += $"{heading.Text} ";
+                        }
+                        break;
+                    case DocumentTypes.RichTextComponent.Alias:
+                        if (module is RichtextComponent richtextComponent)
+                        {
+                            result += $"{richtextComponent.RichText.StripHtml()} ";
+                        }
+                        break;
+                    case DocumentTypes.Flyer.Alias:
+                        break;
+                    case DocumentTypes.Teaser.Alias:
+
+                        break;
+                    case DocumentTypes.Accordeon.Alias:
+
+                        break;
+                    case DocumentTypes.Quote.Alias:
+
+                        break;
+                    case DocumentTypes.TwoColumnWrapper.Alias:
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+
+
 
         public void Terminate()
         {

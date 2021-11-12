@@ -104,6 +104,7 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string SloganTitle = "sloganTitle";
                 public const string SloganSubTitle = "sloganSubTitle";
                 public const string Modules = "modules";
+                public const string HomeSlides = "homeSlides";
 
 
             }

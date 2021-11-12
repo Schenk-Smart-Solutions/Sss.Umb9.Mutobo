@@ -64,12 +64,21 @@ namespace Sss.Umb9.Mutobo.Services
             {
                 var currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name.ToString().ToLower();
                 var searchTerm = HtmlHelperExtensions.SearchFriendlyString(term);
-                var diffFields = new string[] { "nodeName", "__NodeTypeAlias", "fileTextContent", "abstract_" + currentCulture, "abstract", "mainContent", "city", "cities", "cityName", "location", "pageTitle", "modules", "orchestra", "artists", "shortDescription_" + currentCulture, "programAccordeon_" + currentCulture };
+                var diffFields = new string[] { 
+                    "nodeName", 
+                    "__NodeTypeAlias", 
+                    "fileTextContent", 
+                    "abstract_" + currentCulture, 
+                    "abstract", 
+                    "mainContent", 
+                    "pageTitle", 
+                    "modules"
+                };
 
                 if (!string.IsNullOrEmpty(term))
                 {
                     var query = index.Searcher.CreateQuery(null, BooleanOperation.And)
-    .GroupedOr(diffFields, searchTerm);
+                                    .GroupedOr(diffFields, searchTerm);
                     var results = query.Execute();
 
                     result.Results = results
