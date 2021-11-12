@@ -475,9 +475,9 @@ $RECYCLE.BIN/
 
 # This is the no-nodes, installer & upgrader pages from Umbraco
 # Nuget package Umbraco.Cms.StaticAssets will copy them in during dotnet build
-**/umbraco/UmbracoWebsite/
-**/umbraco/UmbracoInstall/
-**/umbraco/UmbracoBackOffice/
+# **/umbraco/UmbracoWebsite/
+# **/umbraco/UmbracoInstall/
+# **/umbraco/UmbracoBackOffice/
 
 # Comment out the line below if you wish to change or add any new templates to PartialView Macros
 **/umbraco/PartialViewMacros/
