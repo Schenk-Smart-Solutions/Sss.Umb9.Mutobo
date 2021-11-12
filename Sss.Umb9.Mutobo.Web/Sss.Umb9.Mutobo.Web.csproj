@@ -14,10 +14,8 @@
     <ItemGroup>
         <Content Include="App_Plugins/**" CopyToOutputDirectory="Always" />
         <Content Include="umbraco/**" CopyToOutputDirectory="Always" />
-        <Compile Remove="App_Plugins\**" />
         <Compile Remove="wwwroot\media\**" />
         <Compile Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
-        <Content Remove="App_Plugins\**" />
         <Content Remove="umbraco/Data/**" />
         <Content Remove="umbraco/Logs/**" />
         <Content Remove="umbraco/mediacache/**" />
@@ -27,10 +25,8 @@
         <Compile Include="umbraco/models/**" Exclude="**/*.flag" />
     </ItemGroup>
     <ItemGroup>
-      <EmbeddedResource Remove="App_Plugins\**" />
       <EmbeddedResource Remove="wwwroot\media\**" />
       <EmbeddedResource Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
-      <None Remove="App_Plugins\**" />
       <None Remove="wwwroot\media\**" />
       <None Remove="wwwroot\web-components-cms-template-base\src\es\components\web-components-cms-template\backstop_data\**" />
     </ItemGroup>
