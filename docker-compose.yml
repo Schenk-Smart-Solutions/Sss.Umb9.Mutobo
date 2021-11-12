@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  umbraco-db:
+    container_name: umbraco-db-mssql-2019
+    image: mcr.microsoft.com/mssql/server:2019-CU13-ubuntu-20.04
+    env_file: ./configs/ms.sql.env
+    user: root
+    volumes:
+      - umbraco.db:/var/opt/mssql/data
+    restart: always
+    ports:
+      - '3930:1433'
+      - '3931:1434'
+  
+  umbraco-netcore:
+    container_name: mutobo-9
+    restart: always
+    depends_on:
+      - umbraco-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["/wait-for-it.sh", "host.docker.internal:3930", "-t", "120", "--", "dotnet", "Sss.Umb9.Mutobo.Web.dll"]
+    ports:
+      - "8080:80"
+
+volumes:
+  umbraco.db:

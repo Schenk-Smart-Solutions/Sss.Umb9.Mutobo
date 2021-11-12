@@ -37,14 +37,13 @@ namespace Sss.Umb9.Mutobo.Components
             IIndex externalIndex = null;
             IIndex pdfIndex = null;
 
-            if (_examineManager.TryGetIndex("ExternalIndex", out externalIndex)
-                && _examineManager.TryGetIndex(PdfIndexConstants.PdfIndexName, out pdfIndex))
+            if (_examineManager.TryGetIndex("ExternalIndex", out externalIndex))
             {
 
-
+               
                 // FieldDefinitionCollection contains all indexed fields 
                 externalIndex.FieldDefinitions.Append(new FieldDefinition("contents", FieldDefinitionTypes.FullText));
-                ((BaseIndexProvider)externalIndex).TransformingIndexValues += OnTransformingIndexValues;
+                //((BaseIndexProvider)externalIndex).TransformingIndexValues += OnTransformingIndexValues;
 
                 ////register multisearcher
                 //var multisearch = new MultiIndexSearcher("MultiSearcher", new IIndex[] { externalIndex, pdfIndex });
@@ -67,14 +66,14 @@ namespace Sss.Umb9.Mutobo.Components
                         using (var umbracoContext = _contextFactory.EnsureUmbracoContext())
                         {
                             IPublishedContent contentNode = umbracoContext.UmbracoContext.Content.GetById(nodeId);
-                            IPublishedElement element = umbracoContext.UmbracoContext.Content.GetById(nodeId);
+                           // IPublishedElement element = umbracoContext.UmbracoContext.Content.GetById(nodeId);
 
                             if (contentNode != null)
                             {
                                 var contentRichtext = string.Empty;
-                                if (element.Value<IEnumerable<IPublishedElement>>(DocumentTypes.ContentPage.Fields.Modules) != null)
+                                if (contentNode.Value<IEnumerable<IPublishedElement>>(DocumentTypes.ContentPage.Fields.Modules) != null)
                                 {
-                                    foreach (var item in element.Value<IEnumerable<IPublishedElement>>(DocumentTypes.ContentPage.Fields.Modules))
+                                    foreach (var item in contentNode.Value<IEnumerable<IPublishedElement>>(DocumentTypes.ContentPage.Fields.Modules))
                                     {
 
                                         if (item.HasProperty("richText"))

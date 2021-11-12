@@ -1,15 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Examine.Lucene" Version="2.0.1" />
-    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00014" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
-    <PackageReference Include="Umbraco.Cms.Web.Common" Version="9.0.0" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="9.0.1" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="9.0.1" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.1" />
     <PackageReference Include="Umbraco.ExaminePDF" Version="9.0.0" />
   </ItemGroup>
 
