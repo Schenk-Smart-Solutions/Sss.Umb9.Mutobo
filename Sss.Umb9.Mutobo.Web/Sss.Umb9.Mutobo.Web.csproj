@@ -46,6 +46,7 @@
       <Folder Include="uSync\v9\ContentTypes\" />
       <Folder Include="uSync\v9\Content\" />
       <Folder Include="uSync\v9\Media\" />
+      <Folder Include="uSync\v9\Templates\" />
       <Folder Include="wwwroot\Smidge\" />
     </ItemGroup>
     <ItemGroup>
