@@ -153,7 +153,7 @@ namespace Sss.Umb9.Mutobo.Services
                 };
             }
 
-            return new EmptyFooterConfiguration();
+            return  null;
         }
 
 

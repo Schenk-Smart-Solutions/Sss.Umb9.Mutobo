@@ -18,13 +18,19 @@
 
 
     <div style="display:flex; flex-direction: row; align-items:center;">
-        <a-logo namespace="logo-" src="@Model.Logo.DefaultSource.Src" href="@Model.LogoUrl.Url">
+
+
+        @if (!string.IsNullOrEmpty(Model.Logo?.DefaultSource?.Src) && !string.IsNullOrEmpty(Model.LogoUrl?.Url))
+        {
+                    <a-logo namespace="logo-" src="@Model.Logo.DefaultSource.Src" href="@Model.LogoUrl.Url">
             <style>
                 :host {
                     --logo-height: 170px;
                 }
             </style>
         </a-logo>
+        }
+
 
 
         <span style="font-size: min(1em, 5vw); font-weight: bold; margin: 0.5em 0 0.5em 0;">SMART AND SIMPLE AS NATURE</span>

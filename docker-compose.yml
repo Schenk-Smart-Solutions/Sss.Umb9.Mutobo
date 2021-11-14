@@ -7,9 +7,7 @@ services:
     env_file: ./configs/ms.sql.env
     user: root
     volumes:
-          - ./backups/KEEP:/var/opt/mssql/backups
-          - ./datafiles/datafiles:/var/opt/sqlserver
-          - ./system/system:/var/opt/mssql
+      - umbraco.db:/var/opt/mssql/data
     restart: always
     ports:
       - '3930:1433'
