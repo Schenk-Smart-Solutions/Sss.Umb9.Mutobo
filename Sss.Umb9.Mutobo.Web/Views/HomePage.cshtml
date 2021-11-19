@@ -8,22 +8,11 @@
 <base-o-body>
 
 
+    @if (Model.CallToActionButton != null)
+    { 
+        @await Html.PartialAsync("~/Views/Modules/CallToActionButton.cshtml", Model.CallToActionButton)
+    }
 
-    <div>
-        <base-a-call-for-action 
-                                href="/offerte-anfordern"
-                                background-color="rgba(128, 0, 0, .8)"
-                                position="fixed"
-                                position-mobile="static"
-                                right="5vw"
-                                z-index:"0"
-                                namespace="cta-">
-            <h4>Offerte <br />anfordern</h4>
-            <p>
-                es lohnt sich!
-            </p>
-        </base-a-call-for-action>
-    </div>
 
 
     <h1>@Model.PageTitle</h1>

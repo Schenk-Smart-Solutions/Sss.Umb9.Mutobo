@@ -53,6 +53,7 @@ namespace Sss.Umb9.Mutobo.Composer
             builder.Services.AddScoped<ISearchService, SearchService>();
             builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>(); 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddSingleton<ICallToActionService, CalllToActionService>();
             builder.Services.AddSingleton<IThemeService, ThemeService>();
         }
     }

@@ -24,6 +24,7 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
         protected readonly IImageService ImageService;
         protected readonly IPageLayoutService PageLayoutService;
         protected readonly IMutoboContentService ContententService;
+        private readonly ICallToActionService _callToActionService;
 
         public BasePageController(
             ILogger<RenderController> logger,
@@ -31,12 +32,14 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
             IUmbracoContextAccessor umbracoContextAccessor,
             IImageService imageService,
             IPageLayoutService pageLayoutService,
-            IMutoboContentService contentService)
+            IMutoboContentService contentService,
+            ICallToActionService callToActionService)
             : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
             ImageService = imageService;
             PageLayoutService = pageLayoutService;
             ContententService = contentService;
+            _callToActionService = callToActionService;
         }
 
 
@@ -65,7 +68,7 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
                 : string.Empty;
 
 
-
+            model.CallToActionButton = _callToActionService.GetCtaButton(CurrentPage);
             model.HeaderConfiguration = PageLayoutService.GetHeaderConfiguration(CurrentPage);
             model.FooterConfiguration = PageLayoutService.GetFooterConfiguration(CurrentPage);
             //model.FooterConfiguration.HomePageLogo = model.HeaderConfiguration.Logo;

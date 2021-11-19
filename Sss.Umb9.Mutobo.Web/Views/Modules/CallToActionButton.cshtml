@@ -1,0 +1,15 @@
+﻿@model Sss.Umb9.Mutobo.Modules.CallToActionButton
+<div>
+    <base-a-call-for-action href="@Model.Link.Url"
+                            background-color="rgba(128, 0, 0, .8)"
+                            position="fixed"
+                            position-mobile="static"
+                            right="5vw"
+                            z-index:"0"
+                            namespace="cta-">
+        <h4>@Html.Raw(Model.Title)</h4>
+        <p>
+            @Html.Raw(Model.Text)
+        </p>
+    </base-a-call-for-action>
+</div>

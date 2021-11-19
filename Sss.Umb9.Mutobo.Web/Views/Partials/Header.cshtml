@@ -6,13 +6,11 @@
     <style>
 
         :host {
-         
         }
 
         :host([sticky].top), :host([sticky].top) > header {
             background-color: var(--header-background-color, black) !important;
         }
-
 
     </style>
 
@@ -22,13 +20,13 @@
 
         @if (!string.IsNullOrEmpty(Model.Logo?.DefaultSource?.Src) && !string.IsNullOrEmpty(Model.LogoUrl?.Url))
         {
-                    <a-logo namespace="logo-" src="@Model.Logo.DefaultSource.Src" href="@Model.LogoUrl.Url">
-            <style>
-                :host {
-                    --logo-height: 170px;
-                }
-            </style>
-        </a-logo>
+            <a-logo namespace="logo-" src="@Model.Logo.DefaultSource.Src" href="@Model.LogoUrl.Url">
+                <style>
+                    :host {
+                        --logo-height: 170px;
+                    }
+                </style>
+            </a-logo>
         }
 
 
@@ -37,47 +35,47 @@
     </div>
 
 
-        @if (Model.NavigationItems != null && Model.NavigationItems.Any())
-        {
+    @if (Model.NavigationItems != null && Model.NavigationItems.Any())
+    {
 
 
 
-    <m-navigation hover="false" namespace="navigation-" hit-area="false">
-        <style>
-            :host {
-                --navigation-color: var(--color);
-                --navigation-a-link-color-no-scroll: var(--color);
-                width:50%;
-            }
-        </style>
-        <ul>
-            <li>
-                <a href="/">
-                    Home
-                </a>
-            </li>
-
-            @foreach (var navItem in Model.NavigationItems)
-            {
+        <m-navigation hover="false" namespace="navigation-" hit-area="false">
+            <style>
+                :host {
+                    --navigation-color: var(--color);
+                    --navigation-a-link-color-no-scroll: var(--color);
+                    width: 50%;
+                }
+            </style>
+            <ul>
                 <li>
-                    <a href="@navItem.Url" target="@(navItem.NewWindow ? "_blank" : string.Empty)">@navItem.Title</a>
-                    @if (navItem.Children.Any())
-                    {
-                        <ul>
-                            @foreach (var childNavItem in navItem.Children)
-                            {
-                                <li><a href="@childNavItem.Url" target="@(childNavItem.NewWindow ? "_blank" : string.Empty)">@childNavItem.Title</a></li>
-                            }
-                        </ul>
-                    }
+                    <a href="/">
+                        Home
+                    </a>
                 </li>
-            }
 
-        </ul>
-    </m-navigation>
+                @foreach (var navItem in Model.NavigationItems)
+                {
+                    <li>
+                        <a href="@navItem.Url" target="@(navItem.NewWindow ? "_blank" : string.Empty)">@navItem.Title</a>
+                        @if (navItem.Children.Any())
+                        {
+                            <ul>
+                                @foreach (var childNavItem in navItem.Children)
+                                {
+                                    <li><a href="@childNavItem.Url" target="@(childNavItem.NewWindow ? "_blank" : string.Empty)">@childNavItem.Title</a></li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+
+            </ul>
+        </m-navigation>
 
 
-        }
+    }
 
 
 

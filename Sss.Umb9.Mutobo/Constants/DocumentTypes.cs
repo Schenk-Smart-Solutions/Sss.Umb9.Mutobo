@@ -49,8 +49,6 @@ namespace Sss.Umb9.Mutobo.Constants
         public static class BasePage
         {
             public const string Alias = "basePage";
-
-
             public static class Fields
             {
                 // BasePage
@@ -73,9 +71,11 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string Thumbnail = "thumbnail";
                 public const string ExcludeFromSearch = "excludeFromSearch";
 
+                public const string CallToActionButton = "callToActionButton";
+                public const string ShowCtaButton = "showCtaButton";
+
             }
         }
-
 
         public static class SearchResults
         {
@@ -92,8 +92,6 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-
-
         public static class HomePage
         {
             public const string Alias = "homePage";
@@ -105,8 +103,6 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string SloganSubTitle = "sloganSubTitle";
                 public const string Modules = "modules";
                 public const string HomeSlides = "homeSlides";
-
-
             }
         }
         public static class ArticlePage
@@ -123,20 +119,6 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string TeaserImageWidth = "teaserImageWidth";
             }
         }
-
-
-        public static class TeaserPage
-        {
-            public const string Alias = "teaserPage";
-
-            public static class Fields
-            {
-                public const string Teasers = "teasers";
-
-            }
-        }
-
-
 
         public static class Theme
         {
@@ -164,31 +146,10 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-
-        public static class ImpressumPage
-        {
-            public const string Alias = "impressumPage";
-
-            public static class Fields
-            {
-                public const string HtmlContent = "htmlContent";
-
-            }
-        }
-
-
         public static class Configuration
         {
             public const string Logo = "logo";
             public const string Link = "logoUrl";
-        }
-
-        public static class Link
-        {
-            public const string ExternalLink = "externalLinkUrl";
-            public const string InternalLink = "internalLinkUrl";
-            public const string OpenNewWindow = "openNewWindow";
-            public const string Text = "linkTitle";
         }
 
         public static class FooterConfiguration
@@ -246,7 +207,6 @@ namespace Sss.Umb9.Mutobo.Constants
 
         }
 
-
         public static class PictureLink
         {
             public const string Alias = "pictureLink";
@@ -299,7 +259,6 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-
         public static class VideoComponent
         {
             public const string Alias = "videoComponent";
@@ -325,7 +284,6 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-
         public static class Heading
         {
             public const string Alias = "heading";
@@ -337,7 +295,6 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string NavigationAnchor = "navigationAnchor";
             }
         }
-
 
         public static class Teaser
         {
@@ -366,10 +323,6 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-
-
-
-
         public static class SliderComponent
         {
             public const string Alias = "sliderComponent";
@@ -383,7 +336,6 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string DisplayType = "displayType";
             }
         }
-
 
         public static class Picture
         {
@@ -417,26 +369,6 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string ReceiverMailConfiguration = "receiverMailConfiguration";
                 public const string SenderMailConfiguration = "senderMailConfiguration";
                 public const string LandingPage = "landingPage";
-            }
-        }
-
-        public static class Interpretors
-        {
-            public static class Conductor
-            {
-                public const string Alias = "conductor";
-            }
-            public static class Composer
-            {
-                public const string Alias = "composer";
-            }
-            public static class Orchestra
-            {
-                public const string Alias = "orchestra";
-            }
-            public static class Soloist
-            {
-                public const string Alias = "soloist";
             }
         }
 
@@ -514,7 +446,6 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-
         public static class ProjectCard
         {
             public const string Alias = "projectCard";
@@ -538,7 +469,6 @@ namespace Sss.Umb9.Mutobo.Constants
             }
         }
 
-
         public static class TwoColumnWrapper
         {
             public const string Alias = "twoColWrapper";
@@ -560,10 +490,18 @@ namespace Sss.Umb9.Mutobo.Constants
                 public const string Title = "title";
                 public const string Text = "text";
                 public const string Link = "link";
+            }
+        }
 
+        public static class CallToActionButton {
+            
+            public const string Alias = "callToActionButton";
 
-
-
+            public static class Fields
+            {
+                public const string Title = "title";
+                public const string Text = "text";
+                public const string Link = "link";
             }
         }
 

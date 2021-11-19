@@ -1,5 +1,6 @@
 ﻿using Sss.Umb9.Mutobo.Constants;
 using Sss.Umb9.Mutobo.Interfaces;
+using Sss.Umb9.Mutobo.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Sss.Umb9.Mutobo.PageModels
         {
         }
 
-
+        public CallToActionButton CallToActionButton { get; set; }
         public IHeaderConfiguration HeaderConfiguration { get; set; }
         public IFooterConfiguration FooterConfiguration { get; set; }
 

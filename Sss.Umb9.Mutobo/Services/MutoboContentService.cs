@@ -221,9 +221,8 @@ namespace Sss.Umb9.Mutobo.Services
                             }
                             twoColModel.Elements = childModules;
                             result.Add(twoColModel);
-
-
                             break;
+
                     }
                 }
 
@@ -243,7 +242,9 @@ namespace Sss.Umb9.Mutobo.Services
             {
                 case DocumentTypes.BasePage.Alias:
                 default:
-                    result = new BasePage(content);
+                    result = new BasePage(content) {
+               
+                    };
                     break;
 
                 case DocumentTypes.ArticlePage.Alias:
@@ -255,9 +256,10 @@ namespace Sss.Umb9.Mutobo.Services
                         ImageService.GetImages(content.Value<IEnumerable<IPublishedContent>>(DocumentTypes.ArticlePage.Fields.EmotionImages),
                         width: 800,
                         height: 450) : null,
-                       
                     };
                     break;
+
+
                 case DocumentTypes.ContentPage.Alias:
                     result = new ContentPage(content)
                     {
@@ -268,6 +270,8 @@ namespace Sss.Umb9.Mutobo.Services
                         Modules = content.HasValue(DocumentTypes.ContentPage.Fields.Modules) ? GetContent(content, DocumentTypes.ContentPage.Fields.Modules) : null
                     };
                     break;
+
+
                 case DocumentTypes.HomePage.Alias:
                     var txtImgSlides = content.HasValue(DocumentTypes.HomePage.Fields.HomeSlides) ?
                         CurrentPage.Value<IEnumerable<IPublishedElement>>(DocumentTypes.HomePage.Fields.HomeSlides) : null;
@@ -286,7 +290,7 @@ namespace Sss.Umb9.Mutobo.Services
                     break;
 
             }
-
+     
             result.Theme = ThemeService.GetTheme(content);
 
             return result;

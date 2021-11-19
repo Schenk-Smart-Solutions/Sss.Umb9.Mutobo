@@ -28,8 +28,16 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
             IUmbracoContextAccessor umbracoContextAccessor, 
             IImageService imageService,
             IMutoboContentService contentService,
-            IPageLayoutService pageLayoutService) 
-                : base(logger, compositeViewEngine, umbracoContextAccessor, imageService, pageLayoutService, contentService)
+            IPageLayoutService pageLayoutService,
+            ICallToActionService callToActionService) 
+                : base(
+                      logger, 
+                      compositeViewEngine, 
+                      umbracoContextAccessor, 
+                      imageService, 
+                      pageLayoutService, 
+                      contentService,
+                      callToActionService)
         {
         
 

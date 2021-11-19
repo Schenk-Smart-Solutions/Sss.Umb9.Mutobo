@@ -13,7 +13,21 @@ namespace Sss.Umb9.Mutobo.Controllers.PageControllers
 {
     public class SearchResultsController : BasePageController
     {
-        public SearchResultsController(ILogger<SearchResultsController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor, IImageService imageService, IPageLayoutService pageLayoutService, IMutoboContentService contentService) : base(logger, compositeViewEngine, umbracoContextAccessor, imageService, pageLayoutService, contentService)
+        public SearchResultsController(
+            ILogger<SearchResultsController> logger, 
+            ICompositeViewEngine compositeViewEngine, 
+            IUmbracoContextAccessor umbracoContextAccessor, 
+            IImageService imageService, 
+            IPageLayoutService pageLayoutService, 
+            IMutoboContentService contentService,
+            ICallToActionService callToActionService) : base(
+                logger, 
+                compositeViewEngine, 
+                umbracoContextAccessor, 
+                imageService, 
+                pageLayoutService, 
+                contentService,
+                callToActionService)
         {
         }
     }
