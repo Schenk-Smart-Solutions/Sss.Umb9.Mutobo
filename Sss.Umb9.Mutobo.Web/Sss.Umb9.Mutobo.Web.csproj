@@ -7,9 +7,9 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Shorthand.ImageSharp.WebP" Version="2.2.1" />
-        <PackageReference Include="Umbraco.Cms" Version="9.0.1" />
-        <PackageReference Include="uSync" Version="9.0.2" />
-        <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.10.0" />
+        <PackageReference Include="Umbraco.Cms" Version="9.1.0" />
+        <PackageReference Include="uSync" Version="9.0.4" />
+        <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.11.0" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="App_Plugins/**" CopyToOutputDirectory="Always" />
