@@ -51,6 +51,7 @@
       <Folder Include="wwwroot\Smidge\" />
     </ItemGroup>
     <ItemGroup>
+      <None Include="appsettings.json" />
       <None Include="uSync\v9\Domains\_.config" />
     </ItemGroup>
 
