@@ -47,7 +47,7 @@ html {
     --carousel-transition-duration: 1.6s;
     --color-hover-secondary: var(--color);
     --color-hover: #ffffff;
-    --color-secondary:rgb(18, 56, 0);
+    --color-secondary: rgb(18, 56, 0);
     --color: rgb(48, 46, 46);
     --contactform-balloon-color: var(--color-secondary);
     --contactform-button-background-color-hover: var(--color-secondary);
@@ -104,7 +104,7 @@ html {
     --flyer-timing-mobile: cubic-bezier(0.43, 1.77, 0, 0.43);
     --flyer-timing: cubic-bezier(0.88, 1.96, 0, 0.15);
     --font-family-secondary: var(--font-family);
-    --font-family: 'Ubuntu', sans-serif;
+    --font-family: 'Gamja Flower', cursive;
     --font-size-mobile: min(18px, 5vw);
     --font-size: max(18px, 0.9vw);
     --font-weight: 700;
@@ -301,9 +301,10 @@ html {
     --navigation-a-link-font-size-no-scroll-mobile: 1em;
     --navigation-align-items: center;
     --navigation-background-color-mobile: rgb(18, 56, 0);
-    --navigation-background-color:rgb(18, 56, 0);
+    --navigation-background-color: rgb(18, 56, 0);
     --navigation-color-hover: var(--color-hover);
     --navigation-color: #ffffff;
+
     --navigation-content-spacing: 1em;
     --navigation-font-size: 1em;
     --navigation-justify-content: flex-end;
@@ -344,4 +345,8 @@ html {
     --ul-text-align: left;
     --video-margin: 70px auto 0 auto;
     --video-width: var(--picture-width);
+
+
+
+    --navigation-a-link-color-no-scroll: #ffffff;
 }
